@@ -35,6 +35,7 @@ public class ServiceUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+
     public ServiceUser(){ }
 
     public long getId() {

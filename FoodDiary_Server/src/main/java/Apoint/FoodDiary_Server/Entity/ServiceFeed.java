@@ -17,6 +17,8 @@ public class ServiceFeed {
     @Column(nullable = false)
     private String image;
 
+//    @ManyToOne
+//    @JoinColumn(name="user_id")
     @Column(nullable = false)
     private String user_id;
 
@@ -27,6 +29,8 @@ public class ServiceFeed {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+
 
     public long getId() {
         return id;
