@@ -1,28 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavigationBar from './NavigationBar';
+import MainContent from './MainContent';
 import './Mainpage.css';
-import Avatar from '@mui/material/Avatar';
 
-function Mainpage({username, caption, imageUrl}) {
-  return (
-    <div className="post">
-      <div className="post_header">
-        <Avatar
-          className="post_avatar"
-          alt='KimCoding'
-          src="/static/images/avatar/1.jpg"
-        />
-        <h3>{username}</h3>
+class Mainpage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  render() {
+    return (
+      <div>
+        <NavigationBar/>
+        <MainContent/>
       </div>
-      
-      
-
-      <img className="post_image" src ={imageUrl} alt=""/>
-      
-
-      <h4 className="post_text"><strong>{username} </strong> {caption} </h4>
-      
-    </div>
-  )
+    );
+  }
 }
+
 
 export default Mainpage

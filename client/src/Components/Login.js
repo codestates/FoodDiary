@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Grid from '@mui/material/Grid';
 import login_image from '../images/9364675fb26a.svg';
 import logo_image from '../images/Food_Diary_Logo.png';
-import appstore from '../images/app.png'
-import playstore from '../images/play.png'
-import apoint from '../images/Apoint_Logo.png'
-import './Login.css'
+import appstore from '../images/app.png';
+import playstore from '../images/play.png';
+import apoint from '../images/Apoint_Logo.png';
+import './Login.css';
 import SignIn from './SignIn';
 import SignUp from './Signup';
 

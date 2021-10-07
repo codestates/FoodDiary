@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import "./Signup.css"
+import './Signup.css';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {}
   }  
   render() {
     return (
