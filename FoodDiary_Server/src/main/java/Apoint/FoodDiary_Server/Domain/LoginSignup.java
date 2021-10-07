@@ -1,6 +1,6 @@
 package Apoint.FoodDiary_Server.Domain;
 
-public class LoginSignUp {
+public class LoginSignup {
 
     private String email;
     private String password;
