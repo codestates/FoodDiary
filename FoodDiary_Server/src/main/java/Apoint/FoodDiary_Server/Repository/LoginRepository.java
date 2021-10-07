@@ -33,6 +33,12 @@ public class LoginRepository {
         return entityManager.createQuery("SELECT e FROM ServiceUser e where e.email = '"+email+"'", ServiceUser.class).getResultList();
     }
 
+    public List<ServiceUser> FindUserList(){
+        // DB service_user 테이블에 모든 유저 정보를 리턴합니다.
+        // TODO :
+        return entityManager.createQuery("SELECT e FROM ServiceUser e", ServiceUser.class).getResultList();
+    }
+
 
     public void CreateServiceUser(LoginSignup loginSignup, Long id){
 

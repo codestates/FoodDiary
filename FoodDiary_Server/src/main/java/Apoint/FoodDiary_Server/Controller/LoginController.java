@@ -1,6 +1,7 @@
 package Apoint.FoodDiary_Server.Controller;
 
 import Apoint.FoodDiary_Server.Domain.LoginSignin;
+import Apoint.FoodDiary_Server.Domain.LoginSignup;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,20 @@ public class LoginController {
                 loginSignup.getUsername() == null) {
             return ResponseEntity.badRequest().body("insufficient parameters upplied");
         }
+        ServiceUser user = loginService.CreateUserData(loginSignup);
+
+        if(user == null) {
+            return ResponseEntity.badRequest().body("email exists");
+        }
+
+        Cookie cookie = new Cookie("jwt",
+                loginService.CreateJWTToken(user)); // jwt 토큰을 생성하여 쿠키를 통해 클라이언트에 전달해야 합니다. (cookie key -> "jwt")
+        response.addCookie(cookie);
 
         return ResponseEntity.ok().body(new HashMap<>(){{
             put("message","ok");
         }});
     }
-
 
     @PostMapping(value = "/signin")
     public ResponseEntity<?> UserSignIn(@RequestBody(required = true) LoginSignin loginSignin, HttpServletResponse response){

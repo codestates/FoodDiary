@@ -2,6 +2,7 @@ package Apoint.FoodDiary_Server.Service;
 
 
 import Apoint.FoodDiary_Server.Domain.LoginSignin;
+import Apoint.FoodDiary_Server.Domain.LoginSignup;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Repository.LoginRepository;
 import io.jsonwebtoken.*;
@@ -87,5 +88,16 @@ public class LoginService {
                 }
             };
         }
+    }
+
+    public ServiceUser CreateUserData(LoginSignup loginSignup){
+        for(ServiceUser i : loginRepository.FindUserList()){
+            if(i.getEmail().equals(loginSignup.getEmail())){
+                return null;
+            }
+        }
+        GET_ID++;
+        loginRepository.CreateServiceUser(loginSignup, GET_ID);
+        return loginRepository.FindById(GET_ID);
     }
 }
