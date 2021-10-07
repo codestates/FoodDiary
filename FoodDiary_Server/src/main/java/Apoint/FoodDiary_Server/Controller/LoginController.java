@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+
 @RestController
 @CrossOrigin(origins = "https://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
 //client 포트번호 :3000번
@@ -22,8 +25,20 @@ public class LoginController {
     private final LoginService loginService;
 
     @Autowired
-    public LoginController(LoginService loginService){
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
+    }
+
+    @PostMapping(value = "/signup")
+    public ResponseEntity<?> UserSignUp(@RequestBody(required = true) LoginSignup loginSignup, HttpServletResponse response) {
+        if (loginSignup.getEmail() == null || loginSignup.getBirth() == null || loginSignup.getPassword() == null ||
+                loginSignup.getUsername() == null) {
+            return ResponseEntity.badRequest().body("insufficient parameters upplied");
+        }
+
+        return ResponseEntity.ok().body(new HashMap<>(){{
+            put("message","ok");
+        }});
     }
 
 
