@@ -1,0 +1,1 @@
+INSERT INTO service_user (id, username, password, email, birth,user_image, admin, created_at, updated_at) VALUES (500, "김형준", "0000", "HJ@codestates.com", "960415",'aaa', true, now(), now());

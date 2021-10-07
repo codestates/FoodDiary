@@ -69,6 +69,30 @@ public class ServiceUser {
         this.username = username;
     }
 
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -84,16 +108,4 @@ public class ServiceUser {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    public String getBirth() { return birth; }
-
-    public void setBirth(String birth) { this.birth = birth; }
-
-    public String getUserImage() { return userImage; }
-
-    public void setUserImage(String userimage) { this.userImage = userImage; }
-
-    public Boolean getAdmin() { return admin; }
-
-    public void setAdmin(Boolean admin) { this.admin = admin; }
 }
