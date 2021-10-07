@@ -28,11 +28,9 @@ public class LoginRepository {
 
     public List<ServiceUser> FindByEmail(String email){
         // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
-        // TODO :
         return entityManager.createQuery("SELECT e FROM ServiceUser e where e.email = '"+email+"'", ServiceUser.class).getResultList();
-
-
     }
+
 
 
 
