@@ -26,18 +26,18 @@ function NavigationBar() {
 
               <Grid item xs={3} style={{"display":"flex"}}>
                   <Link to = "/mainpage">
-                    <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={home} alt="home icon" width="25px"/>
+                    <img className="navibar_img"  src={home} alt="home icon" width="25px"/>
                   </Link>
 
                   <Link to = "/friends">
-                    <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={friends} alt="friends icon" width="25px"/>
+                    <img className="navibar_img"  src={friends} alt="friends icon" width="25px"/>
                   </Link>
 
                   <Link to = "/invitation">
-                    <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={invitation} alt="invitation icon" width="25px"/>
+                    <img className="navibar_img"  src={invitation} alt="invitation icon" width="25px"/>
                   </Link>
                   <Link>
-                   <Avatar className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
+                   <Avatar className="navibar_img"  src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
                   </Link>
               </Grid>
               <Grid item xs={1}></Grid>

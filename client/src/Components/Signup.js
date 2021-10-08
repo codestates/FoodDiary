@@ -1,6 +1,6 @@
 import './Signup.css';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -33,12 +33,35 @@ import axios from 'axios';
       },{ withCredentials: true })
       .then(console.log("aaaa"))
       props.changeLogin();
+
+      
     // }
   };
+
+  const checkPassword = (e) => {
+    //  8 ~ 10자 영문, 숫자 조합
+    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/
+
+    if (regExp.test(e.target.value)===false) {
+      alert("Doesn't match the requirments")
+      return window.location.reload();
+    }
+  }
+
+  const checkEmail = (e) => {
+    //email check
+    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+
+    if (regExp.test(e.target.value)===false) {
+      alert("Please enter a valid email")
+      return window.location.reload();
+    }
+  }
+  
     return (
       <div>
-        <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
-        <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
+        <input className="login_text" type="text" placeholder="Email" onBlur={checkEmail} onChange={handleInputValue('email')}/>
+        <input className="login_text" type="password" placeholder="Password = 8~10 letters with numbers" onBlur={checkPassword} onChange={handleInputValue('password')}/>
         <input className="login_text" type="text" placeholder="Full Name" onChange={handleInputValue('name')}/>
         <input className="login_text" type="text" placeholder="Birthday YYMMDD" onChange={handleInputValue('birth')}/>
         <input className="login_text" type="text" placeholder="Invitation Code" onChange={handleInputValue('code')}/>
@@ -48,4 +71,4 @@ import axios from 'axios';
   }
 ;
 
-export default SignUp;
+export default SignUp

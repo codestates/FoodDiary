@@ -30,7 +30,7 @@ export default function App() {
       history.push('/login');
     });
   };
-
+  
   // useEffect(() => {
   //   isAuthenticated();
   // },[userInfo]);

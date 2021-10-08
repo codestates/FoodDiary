@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationBar from '../Components/NavigationBar';
 import MainContent from '../Components/MainContent';
 import './Mainpage.css';
+import InfiniteScroll from '../Components/InfiniteScroll';
 
 function Mainpage () {
   

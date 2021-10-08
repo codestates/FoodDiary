@@ -1,12 +1,16 @@
 import { Avatar } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import love from '../images/love.svg';
 import editicon from '../images/edit.svg';
-import Edit from './Editing';
 import './Posts.css';
 
 
 function Posts () {
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggling = () => setIsOpen(!isOpen);
+
+
       return (
         <div className="post_container">
 
@@ -18,7 +22,6 @@ function Posts () {
             </div>
             <div>
             <img onClick={()=>{ alert('Edit Post'); }} style={{ "marginLeft": "8rem","marginTop":"18px", "cursor":"pointer", "width":"15px"}} src={editicon} alt="editing icon" />
-              <Edit/>
             </div>
           </div>
 
