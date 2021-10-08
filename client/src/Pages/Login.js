@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import login_image from '../images/9364675fb26a.svg';
 import logo_image from '../images/Food_Diary_Logo.png';
@@ -11,13 +11,13 @@ import SignUp from '../Components/Signup';
 
 
 function Login() {
-
+  const [isLogin, setIsLogin] = useState(false);
   
-const changeLogin=({isLogin}) => {
-    if (this.state.isLogin){
-      this.setState({isLogin: false});
+const changeLogin=() => {
+    if (isLogin){
+      setIsLogin(false);
     } else {
-      this.setState({isLogin: true});
+      setIsLogin(true);
     }   
   }
   return (
@@ -37,7 +37,7 @@ const changeLogin=({isLogin}) => {
                   <div className="login_signin">
                     
                     {
-                      this.setState.isLogin ? <SignIn/> : <SignUp/>
+                      isLogin ? <SignIn/> : <SignUp changeLogin={changeLogin}/>
                     }
                     
                     <div className="login_separatordiv">
@@ -58,12 +58,12 @@ const changeLogin=({isLogin}) => {
                 <div className="login_invitation">
 
                     {
-                      this.state.isLogin ? 
+                      isLogin ? 
                       <div className="login_signup">
-                        Have an Invitation? <span onClick={()=>this.changeLogin()} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
+                        Have an Invitation? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
                       </div> :
                       <div className="login_signin">
-                        Have an Account? <span onClick={()=>this.changeLogin()} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
+                        Have an Account? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
                       </div>
                     }
 

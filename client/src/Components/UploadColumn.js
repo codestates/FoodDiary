@@ -15,7 +15,7 @@ function Upload () {
             </div>
       
             <div>
-              <img src={this.props.uploadImage} alt="pictures"  width="450px"/>
+              <img src="" alt="pictures"  width="450px"/>
             </div>
   
             <div className="upload_description" >
