@@ -1,13 +1,16 @@
 package Apoint.FoodDiary_Server.Entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
 @Entity
 public class ServiceUser {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id ;
 
     @Column(nullable = false)
     private String email;

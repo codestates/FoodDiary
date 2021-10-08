@@ -2,15 +2,20 @@ package Apoint.FoodDiary_Server.Controller;
 
 import Apoint.FoodDiary_Server.Domain.LoginSignin;
 import Apoint.FoodDiary_Server.Domain.LoginSignup;
+import Apoint.FoodDiary_Server.Domain.MailDto;
+import Apoint.FoodDiary_Server.Entity.ServiceGuest;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.*;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +30,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
+
     @Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
@@ -32,23 +38,27 @@ public class LoginController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity<?> UserSignUp(@RequestBody(required = true) LoginSignup loginSignup, HttpServletResponse response) {
+        // 들어온 회원가입 양식에 빈 값이 있는지 한번 더 체크
         if (loginSignup.getEmail() == null || loginSignup.getBirth() == null || loginSignup.getPassword() == null ||
-                loginSignup.getUsername() == null) {
-            return ResponseEntity.badRequest().body("insufficient parameters upplied");
+                loginSignup.getUsername() == null || loginSignup.getCode() == null) {
+            return ResponseEntity.badRequest().body("insufficient parameters applied");
         }
-        ServiceUser user = loginService.CreateUserData(loginSignup);
 
-        if(user == null) {
+        if(loginService.CheckUserData(loginSignup.getEmail()) == false) {
             return ResponseEntity.badRequest().body("email exists");
         }
-
-        Cookie cookie = new Cookie("jwt",
-                loginService.CreateJWTToken(user)); // jwt 토큰을 생성하여 쿠키를 통해 클라이언트에 전달해야 합니다. (cookie key -> "jwt")
+        if(loginService.CheckGuestData(loginSignup.getEmail())){
+            return ResponseEntity.badRequest().body("You are not invited");
+        }
+        if(loginService.CheckGuestCode(loginSignup.getEmail(),loginSignup.getCode())==false){
+            return ResponseEntity.badRequest().body("Wrong Code!");
+        }
+        ServiceUser user = loginService.CreateUserData(loginSignup);
+        loginService.RemoveGuestAfterSignup(loginSignup.getEmail());
+        Cookie cookie = new Cookie("jwt", loginService.CreateJWTToken(user));
         response.addCookie(cookie);
 
-        return ResponseEntity.ok().body(new HashMap<>(){{
-            put("message","ok");
-        }});
+        return ResponseEntity.ok().body("회원가입이 완료되었습니다");
     }
 
     @PostMapping(value = "/signin")
@@ -137,11 +147,62 @@ public class LoginController {
         }
     }
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+
+    @PostMapping("/email")
+    public ResponseEntity<?> SendEmail(@RequestBody(required = true) MailDto mailDto, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
+
+        //이미 있는 회원인지 확인
+        if(loginService.CheckUserData(mailDto.getAddress()) == true && loginService.CheckGuestData(mailDto.getAddress())==true){
+
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+            mimeMessageHelper.setFrom("ryanromaris@google.com","Food Diary");
+            mimeMessageHelper.setTo(mailDto.getAddress());
+            mimeMessageHelper.setSubject("Hi this is Food Diary Invitation!");
+
+            StringBuilder body = new StringBuilder();
+            body.append("<html> <body><h2>Hello, "+mailDto.getGuestName()+ " Welcome to Food Diary</h2><br>");
+            body.append("<div>안녕하세요 "+mailDto.getGuestName()+"님! </div> </body></html>");
+            body.append("<img src='https://media.vlpt.us/images/ryanromaris/post/419c908f-254a-41a0-8269-89202cd7c0fb/Food_Diary_Logo.png'>");
+
+            body.append("<div>Food Diary에 당신을 초대합니다! 이 이메일 계정으로 Food Diary에 가입하세요.</div> ");
+            String invitationCode = loginService.CreateInvitationCode();
+            body.append("<div>Invitation Code: "+invitationCode+"</div>");
+            body.append("<a href='https://localhost.3000'>Food Diary Homepage</a></body></html>");
+            mimeMessageHelper.setText(body.toString(), true);
+            javaMailSender.send(message);
+
+            loginService.CreateGuestData(mailDto.getAddress(),invitationCode);
+
+            return ResponseEntity.ok().body(new HashMap<>(){{
+                put("message","send Success!");
+            }});
+        } else if(loginService.CheckGuestData(mailDto.getAddress())==false){
+            return ResponseEntity.badRequest().body("이미 초대받은 회원입니다");
+
+        } else{
+            return ResponseEntity.badRequest().body(new HashMap<>(){{
+                put("message","이미 가입한 회원입니다.");
+            }});
+        }
+
+    }
+
 
 //    @GetMapping("/mainpage")
 //    public ResponseEntity<?> GetAllPhotos(HttpServletResponse response){
 //
 //
+//    }
+
+//    @PostMapping(value = "/email")
+//    private int sendEmail(HttpServletRequest request, String userEmail){
+//        HttpSession session = request.getSession();
+//        loginService.mailSend(session, userEmail);
 //    }
 
 }

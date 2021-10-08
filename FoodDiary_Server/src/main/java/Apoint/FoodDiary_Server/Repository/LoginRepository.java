@@ -2,6 +2,7 @@ package Apoint.FoodDiary_Server.Repository;
 
 
 import Apoint.FoodDiary_Server.Domain.LoginSignup;
+import Apoint.FoodDiary_Server.Entity.ServiceGuest;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,11 +41,10 @@ public class LoginRepository {
     }
 
 
-    public void CreateServiceUser(LoginSignup loginSignup, Long id){
+    public void CreateServiceUser(LoginSignup loginSignup){
 
         Date now = new Date();
         ServiceUser user = new ServiceUser();
-        user.setId(id);
         user.setEmail(loginSignup.getEmail());
         user.setPassword(loginSignup.getPassword());
         user.setUsername(loginSignup.getUsername());
@@ -60,6 +60,29 @@ public class LoginRepository {
 
     }
 
+    public void CreateServiceGuest(String email, String code){
+        ServiceGuest guest = new ServiceGuest();
+        guest.setEmail(email);
+        guest.setCode(code);
+        entityManager.persist(guest);
+        entityManager.flush();
+        entityManager.close();
+    }
+
+    public List<ServiceGuest> FindGuestList(){
+        return entityManager.createQuery("SELECT e FROM ServiceGuest e", ServiceGuest.class).getResultList();
+    }
+
+    public List<ServiceGuest> FindGuestByEmail(String email){
+        // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
+        // 초대장 보낼때, 작성한 이메일이 이미 ServiceUser에 있는지 확인하기위해.
+        return entityManager.createQuery("SELECT e FROM ServiceGuest e where e.email = '"+email+"'", ServiceGuest.class).getResultList();
+    }
+
+    public void DeleteGuestAfterSignup(String email){
+        ServiceGuest removeGuest = FindGuestByEmail(email).get(0);
+        entityManager.remove(removeGuest);
+    }
 
 
 }
