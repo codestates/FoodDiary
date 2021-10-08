@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
- function SignUp()  {
+
+ function SignUp(props)  {
   const [userinfo, setuserinfo] = useState({
     email: '',
     password: '',
@@ -20,9 +21,9 @@ import axios from 'axios';
 
   const handleSignup = () => {
     
-    if(userinfo.email === "" || userinfo.password === "" || userinfo.username === "" || userinfo.mobile === ""){
+    // if(userinfo.email === "" || userinfo.password === "" || userinfo.username === "" || userinfo.mobile === ""){
       
-    } else{
+    // } else{
       axios.post('https://localhost:4000/signup',{
         'email' : userinfo.email,
         'password' : userinfo.password,
@@ -31,8 +32,8 @@ import axios from 'axios';
         'code': userinfo.code
       },{ withCredentials: true })
       .then(console.log("aaaa"))
-      history.push("/login");
-    }
+      props.changeLogin();
+    // }
   };
     return (
       <div>
