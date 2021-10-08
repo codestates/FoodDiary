@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import './MainContent.css';
 import FriendsBar from './FriendsBar';
@@ -6,12 +6,8 @@ import Feeds from './Feeds';
 import Upload from './UploadColumn';
 
 
-class MainContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-  render() {
+function MainContent () {
+
     return (
       <div>
           <Grid container>
@@ -32,7 +28,6 @@ class MainContent extends Component {
       </div>
     );
   }
-}
 
 
 export default MainContent

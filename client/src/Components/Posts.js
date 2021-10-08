@@ -1,17 +1,12 @@
 import { Avatar } from '@mui/material';
-import React, { Component } from 'react';
+import React from 'react';
 import love from '../images/love.svg';
 import editicon from '../images/edit.svg';
 import Edit from './Editing';
 import './Posts.css';
 
 
-class Posts extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { }
-    }
-    render() {
+function Posts () {
       return (
         <div className="post_container">
 
@@ -43,7 +38,6 @@ class Posts extends Component {
         </div>
       );
     }
-  }
   
   
-  export default Posts
+export default Posts
