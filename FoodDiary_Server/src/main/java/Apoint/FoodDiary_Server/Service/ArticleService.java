@@ -1,5 +1,7 @@
 package Apoint.FoodDiary_Server.Service;
 
+import Apoint.FoodDiary_Server.Domain.Article;
+import Apoint.FoodDiary_Server.Domain.LoginSignin;
 import Apoint.FoodDiary_Server.Domain.LoginSignup;
 import Apoint.FoodDiary_Server.Entity.ArticleUser;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Service
 public class ArticleService {
-
+    private static long GET_ID = 0L;
 
     private ArticleRepository articleRepository;
 
@@ -21,51 +23,56 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public ArticleUser createArticle(ArticleUser article){
+//    public ArticleUser createArticle(ArticleUser article){
+//
+//        return articleRepository.save(article);
+//    }
 
-        return articleRepository.save(article);
+    public ArticleUser CreateService(Article article){
+        for(ArticleUser i : articleRepository.FindAll()){
+            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
+                    i.getImage().equals(article.getImage())){
+                return null;
+            }
+        }
+        GET_ID++;
+        articleRepository.Create(article, GET_ID);
+        return articleRepository.FindById(GET_ID);
     }
 
-//    public ArticleUser CreateUserData(LoginSignup loginSignup){
-//        for(ServiceUser i : articleRepository.findAll()){
-//            if(i.getEmail().equals(loginSignup.getEmail())){
-//                return null;
+    public List<ArticleUser> FindAllService(){
+        return articleRepository.FindAll();
+    }
+
+    public ArticleUser FindByIdService(Long id){
+
+        return articleRepository.FindById(id);
+    }
+
+    public ArticleUser FindByTitleService(String title){
+
+        return articleRepository.FindByTitle(title).get(0);
+    }
+
+    public void UpdateUserService (ArticleUser article){
+
+         articleRepository.Update(article);
+    }
+
+    public void DeleteService(Long id){
+        articleRepository.Delete(id);
+    }
+
+//    public ArticleUser UpdateUserService(Article article){
+//        for(ArticleUser i : articleRepository.FindAll()){
+//            if(i.getTitle().equals(article.getTitle())){
+//                articleRepository.UpdateService(article, i.getId());
+//                return articleRepository.FindById(i.getId());
 //            }
 //        }
-//        GET_ID++;
-//        loginRepository.CreateServiceUser(loginSignup, GET_ID);
-//        return loginRepository.FindById(GET_ID);
+//        return null;
 //    }
 
-    public List<ArticleUser> getArticlAll(){
-        return (List<ArticleUser>) articleRepository.findAll();
-    }
 
-    public ArticleUser getArticlesById(Long id){
-        return articleRepository.findById(id).orElse(null);
-    }
-
-//    public ArticleUser getArticlesByTitle(String title){
-//        return articleRepository.findById(title).
-//    }
-
-    public void deleteArticle(Long id){
-        articleRepository.deleteById(id);
-
-    }
-
-
-
-    public ArticleUser updateArticle(ArticleUser article)    {
-        Date now = new Date();
-        ArticleUser articleUser = articleRepository.findById(article.getId()).orElse(null);
-        articleUser.setTitle(article.getTitle());
-        articleUser.setComment(article.getComment());
-        articleUser.setImage(article.getImage());
-//        articleUser.setCreatedAt(now);
-//        articleUser.setAdmin(false);
-
-        return articleRepository.save(articleUser);
-    }
 
 }

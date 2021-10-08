@@ -1,6 +1,8 @@
 package Apoint.FoodDiary_Server.Controller;
 
+import Apoint.FoodDiary_Server.Domain.Article;
 import Apoint.FoodDiary_Server.Entity.ArticleUser;
+import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,43 +22,35 @@ public class ArticleController {
     }
 
     @PostMapping(value = "/article")
-    public ArticleUser CreateArticle(@RequestBody ArticleUser articleUser){
-        return articleService.createArticle(articleUser);
+    public ArticleUser CreateArticle(@RequestBody Article article) {
+
+        ArticleUser user = articleService.CreateService(article);
+
+        return user;
+    }
+
+    @GetMapping(value = "/articles")
+    public List<ArticleUser> FindAllArticle() {
+
+        return articleService.FindAllService();
     }
 
     @GetMapping(value = "/article")
-    public List<ArticleUser> findAllArticle(@RequestParam(required = false) Long id) {
+    public ArticleUser FindByIdArticle(@RequestParam(required = false) Long id) {
 
-        List<ArticleUser> users;
-        users.add(articleService.getArticlesById(id));
-        if(id == null){
-            return articleService.getArticlAll();
-        }
+//        List<ArticleUser> articleUsers = articleService.getArticlAll();
 
-        return users;
-}
-
-
-//    @GetMapping(value = "/article")
-//    public ArticleUser findArticleById(@RequestParam(required = false) Long id){
-//
-////        List<ArticleUser> articleUsers = articleService.getArticlAll();
-//
-//        if(id != null){
-//            return articleService.getArticlesById(id);
-//        }
-//
-//        return articleService.getArticlAll();
-//    }
+        return articleService.FindByIdService(id);
+    }
 
     @PutMapping(value = "/article")
-    public ArticleUser updateArticle(@RequestBody ArticleUser article){
-        return articleService.updateArticle(article);
+    public void updateArticle(@RequestBody ArticleUser articleUser) {
+         articleService.UpdateUserService(articleUser);
     }
 
     @DeleteMapping(value = "/article/{id}")
-    public void deleteArticle(@PathVariable Long id){
-        articleService.deleteArticle(id);
+    public void deleteArticle(@PathVariable Long id) {
+        articleService.DeleteService(id);
     }
 
 }

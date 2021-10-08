@@ -8,9 +8,7 @@ public class Article {
     private String image;
     private String comment;
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() {return title;}
 
     public void setTitle(String title) {
         this.title = title;

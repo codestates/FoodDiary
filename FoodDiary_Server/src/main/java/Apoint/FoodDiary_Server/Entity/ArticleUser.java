@@ -8,8 +8,7 @@ import java.util.Date;
 @Table(name = "Article_TBL")
 public class ArticleUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "service_User_id")
@@ -24,12 +23,16 @@ public class ArticleUser {
     @Column(nullable = false)
     private String comment;
 
-//    @Column(nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date createdAt;
-//
-//    @Column(nullable = false)
-//    private boolean admin;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+
+    @Column(nullable = false)
+    private boolean admin;
 
     public ArticleUser(){};
 
@@ -39,6 +42,14 @@ public class ArticleUser {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public ServiceUser getServiceUser() {
+        return serviceUser;
+    }
+
+    public void setServiceUser(ServiceUser serviceUser) {
+        this.serviceUser = serviceUser;
     }
 
     public String getTitle() {
@@ -65,19 +76,27 @@ public class ArticleUser {
         this.comment = comment;
     }
 
-//    public Date getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(Date createdAt) {
-//        this.createdAt = createdAt;
-//    }
-//
-//    public boolean isAdmin() {
-//        return admin;
-//    }
-//
-//    public void setAdmin(boolean admin) {
-//        this.admin = admin;
-//    }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }
