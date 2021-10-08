@@ -7,10 +7,10 @@ import invitation from '../images/find.svg';
 import Avatar from '@mui/material/Avatar';
 import profile from '../images/pp1.png';
 import './NavigationBar.css';
-import { Link } from 'react-router-dom';
 
-function NavigationBar() {
-    
+
+function NavigationBar({handleIconClick, handleLogout}) {
+
   return (
      <div style={{"position": "sticky", "top": "0","z-index":"1"}}>
         <div className="navibar_contents">
@@ -25,20 +25,11 @@ function NavigationBar() {
               </Grid>
 
               <Grid item xs={3} style={{"display":"flex"}}>
-                  <Link to = "/mainpage">
-                    <img className="navibar_img"  src={home} alt="home icon" width="25px"/>
-                  </Link>
-
-                  <Link to = "/friends">
-                    <img className="navibar_img"  src={friends} alt="friends icon" width="25px"/>
-                  </Link>
-
-                  <Link to = "/invitation">
-                    <img className="navibar_img"  src={invitation} alt="invitation icon" width="25px"/>
-                  </Link>
-                  <Link>
-                   <Avatar className="navibar_img"  src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
-                  </Link>
+                  
+                  <img className="navibar_img" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
+                  <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={friends} alt="friends icon" width="25px"/>
+                  <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={invitation} alt="invitation icon" width="25px"/>
+                  <Avatar className="navibar_img" onClick={handleLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
               </Grid>
               <Grid item xs={1}></Grid>
         </Grid>

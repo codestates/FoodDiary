@@ -17,6 +17,10 @@
     border-bottom: 1px solid #dbdbdb;
 }
 
+.post_like {
+    cursor: pointer;
+}
+
 .post_image {
     min-width: 30px;
     min-height: 30px;

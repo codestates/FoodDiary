@@ -1,6 +1,5 @@
 import './Signup.css';
 import React, { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -17,7 +16,7 @@ import axios from 'axios';
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
   };
-  const history = useHistory();
+  
 
   const handleSignup = () => {
     
@@ -43,7 +42,7 @@ import axios from 'axios';
     var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/
 
     if (regExp.test(e.target.value)===false) {
-      alert("Doesn't match the requirments")
+      alert("Doesn't match the requirements")
       return window.location.reload();
     }
   }
