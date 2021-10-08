@@ -3,21 +3,21 @@ package Apoint.FoodDiary_Server.Service;
 
 import Apoint.FoodDiary_Server.Domain.LoginSignin;
 import Apoint.FoodDiary_Server.Domain.LoginSignup;
+import Apoint.FoodDiary_Server.Domain.MailDto;
+import Apoint.FoodDiary_Server.Entity.ServiceGuest;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Repository.LoginRepository;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.time.Duration;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class LoginService {
-    private static long GET_ID = 0L;
+
     private final static String SIGN_KEY = "apointkey";
     private final LoginRepository loginRepository;
 
@@ -96,18 +96,76 @@ public class LoginService {
                 return null;
             }
         }
-        GET_ID++;
-        loginRepository.CreateServiceUser(loginSignup, GET_ID);
-        return loginRepository.FindById(GET_ID);
+        loginRepository.CreateServiceUser(loginSignup);
+        return loginRepository.FindByEmail(loginSignup.getEmail()).get(0);
     }
 
-    public ServiceUser UpdateUserData(LoginSignup loginSignup){
-        for(ServiceUser i : loginRepository.FindUserList()){
-            if(i.getEmail().equals(loginSignup.getEmail())){
-                loginRepository.UpdateServiceData(loginSignup,i.getId());
-                return loginRepository.FindById(i.getId());
+    public Boolean CheckGuestData(String email) {
+        // 초대장 보내는 이메일로 이미 이메일이 갔는지 확인
+        List<ServiceGuest> guest = loginRepository.FindGuestByEmail(email);
+        if (guest.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public String CreateInvitationCode (){
+        StringBuffer invitationCode = new StringBuffer();
+        Random rnd = new Random();
+        for (int i = 0; i < 10; i++) {
+            int rIndex = rnd.nextInt(3);
+            switch (rIndex) {
+                case 0:
+                    // a-z
+                    invitationCode.append((char) ((int) (rnd.nextInt(26)) + 97));
+                    break;
+                case 1:
+                    // A-Z
+                    invitationCode.append((char) ((int) (rnd.nextInt(26)) + 65));
+                    break;
+                case 2:
+                    // 0-9
+                    invitationCode.append((rnd.nextInt(10)));
+                    break;
+            }
+        }
+        return invitationCode.toString();
+    }
+
+    public ServiceGuest CreateGuestData (String email, String code){
+        for(ServiceGuest i : loginRepository.FindGuestList()){
+            if(i.getEmail().equals(email)){
+                return null;
+            }
+        }
+        loginRepository.CreateServiceGuest(email,code);
+        return loginRepository.FindGuestByEmail(email).get(0);
+    }
+
+
+    public Boolean CheckGuestCode (String email, String code){
+        for(ServiceGuest i : loginRepository.FindGuestByEmail(email)){
+            if(i.getCode().equals(code)){
+                return true;
+            } else{
+                return false;
             }
         }
         return null;
+    }
+
+
+    public Boolean CheckUserData(String email){
+        // 초대장 보내는 이메일로 이미 가입이 되어 있는지 확인
+        List<ServiceUser> user = loginRepository.FindByEmail(email);
+        if(user.isEmpty()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void RemoveGuestAfterSignup(String email){
+        loginRepository.DeleteGuestAfterSignup(email);
     }
 }

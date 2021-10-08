@@ -6,6 +6,7 @@ public class LoginSignup {
     private String password;
     private String username;
     private String birth;
+    private String code;
 
     public String getEmail() {
         return email;
@@ -38,4 +39,8 @@ public class LoginSignup {
     public void setBirth(String birth) {
         this.birth = birth;
     }
+
+    public String getCode() { return code; }
+
+    public void setCode(String code) { this.code = code; }
 }

@@ -17,10 +17,9 @@ public class ServiceFeed {
     @Column(nullable = false)
     private String image;
 
-//    @ManyToOne
-//    @JoinColumn(name="user_id")
-    @Column(nullable = false)
-    private String user_id;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private ServiceUser serviceUser;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -64,12 +63,12 @@ public class ServiceFeed {
         this.image = image;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public ServiceUser getServiceUser() {
+        return serviceUser;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setServiceUser(ServiceUser serviceUser) {
+        this.serviceUser = serviceUser;
     }
 
     public Date getCreatedAt() {
