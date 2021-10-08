@@ -100,4 +100,14 @@ public class LoginService {
         loginRepository.CreateServiceUser(loginSignup, GET_ID);
         return loginRepository.FindById(GET_ID);
     }
+
+    public ServiceUser UpdateUserData(LoginSignup loginSignup){
+        for(ServiceUser i : loginRepository.FindUserList()){
+            if(i.getEmail().equals(loginSignup.getEmail())){
+                loginRepository.UpdateServiceData(loginSignup,i.getId());
+                return loginRepository.FindById(i.getId());
+            }
+        }
+        return null;
+    }
 }

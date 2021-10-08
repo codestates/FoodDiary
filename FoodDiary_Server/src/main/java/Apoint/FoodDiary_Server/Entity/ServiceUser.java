@@ -1,6 +1,8 @@
 package Apoint.FoodDiary_Server.Entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -9,7 +11,6 @@ public class ServiceUser {
     @Id
     private long id;
 
-    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -34,6 +35,9 @@ public class ServiceUser {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @OneToMany(mappedBy = "serviceUser")
+    private List<ArticleUser> articleUserList = new ArrayList<>();
 
 
     public ServiceUser(){ }
