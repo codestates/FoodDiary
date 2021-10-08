@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
+@CrossOrigin(origins = "https://localhost:3001", allowedHeaders = "*", allowCredentials = "true")
 //client 포트번호 :3000번
 
 public class LoginController {
