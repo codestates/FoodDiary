@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import './MainContent.css';
 import FriendsBar from './FriendsBar';
 import Feeds from './Feeds';
+import Upload from './UploadColumn';
 
 
 class MainContent extends Component {
@@ -22,7 +23,7 @@ class MainContent extends Component {
                   </div>
               </Grid>
               <Grid item xs={2}>
-                  
+                  <Upload/>
               </Grid>
               <Grid item xs={2}>
                   

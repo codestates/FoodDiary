@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useHistory } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import foodDiary_logo from '../images/Food_Diary_Hori.png';
 import home from '../images/home.svg';
@@ -13,11 +14,12 @@ class NavigationBar extends Component {
         super(props);
         this.state = {}
       }
+      
       render() {
         return (
-          <div>
+          <div style={{"position": "sticky", "top": "0","z-index":"1"}}>
               <div className="navibar_contents">
-              <Grid container>
+              <Grid container >
                     <Grid item xs={2}>
                         
                     </Grid>
@@ -28,10 +30,10 @@ class NavigationBar extends Component {
                         <input  className="navibar_searchBar" text="text" placeholder="Search"/>
                     </Grid>
                     <Grid item xs={3} style={{"display":"flex"}}>
-                        <img className="navibar_img" src={home} alt="home icon" width="25px"/>
-                        <img className="navibar_img" src={friends} alt="friends icon" width="25px"/>
-                        <img className="navibar_img" src={invitation} alt="invitation icon" width="25px"/>
-                        <Avatar className="navibar_img" src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
+                        <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={home} alt="home icon" width="25px"/>
+                        <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={friends} alt="friends icon" width="25px"/>
+                        <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={invitation} alt="invitation icon" width="25px"/>
+                        <Avatar className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
                     </Grid>
                     <Grid item xs={1}></Grid>
               </Grid>
