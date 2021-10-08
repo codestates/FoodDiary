@@ -12,7 +12,6 @@ public class ServiceUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id ;
 
-    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -37,6 +36,9 @@ public class ServiceUser {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @OneToMany(mappedBy = "serviceUser")
+    private List<ArticleUser> articleUserList = new ArrayList<>();
 
 
     public ServiceUser(){ }

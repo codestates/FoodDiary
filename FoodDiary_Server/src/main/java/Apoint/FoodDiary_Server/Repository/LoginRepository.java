@@ -40,6 +40,21 @@ public class LoginRepository {
         return entityManager.createQuery("SELECT e FROM ServiceUser e", ServiceUser.class).getResultList();
     }
 
+    public void UpdateServiceData(LoginSignup loginSignup, Long id){
+
+        ServiceUser user =  new ServiceUser();
+        Date now = new Date();
+        user.setId(id);
+        user.setBirth(loginSignup.getBirth());
+        user.setEmail(loginSignup.getEmail());
+        user.setUsername(loginSignup.getUsername());
+        user.setPassword(loginSignup.getPassword());
+        user.setUpdatedAt(now);
+
+        entityManager.persist(user);
+        entityManager.flush();
+        entityManager.close();
+    }
 
     public void CreateServiceUser(LoginSignup loginSignup){
 

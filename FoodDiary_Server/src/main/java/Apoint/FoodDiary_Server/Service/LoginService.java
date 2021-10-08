@@ -142,6 +142,7 @@ public class LoginService {
         return loginRepository.FindGuestByEmail(email).get(0);
     }
 
+
     public Boolean CheckGuestCode (String email, String code){
         for(ServiceGuest i : loginRepository.FindGuestByEmail(email)){
             if(i.getCode().equals(code)){
@@ -152,6 +153,7 @@ public class LoginService {
         }
         return null;
     }
+
 
     public Boolean CheckUserData(String email){
         // 초대장 보내는 이메일로 이미 가입이 되어 있는지 확인
@@ -166,6 +168,4 @@ public class LoginService {
     public void RemoveGuestAfterSignup(String email){
         loginRepository.DeleteGuestAfterSignup(email);
     }
-
-
 }

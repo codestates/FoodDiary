@@ -60,6 +60,24 @@ public class LoginController {
 
         return ResponseEntity.ok().body("회원가입이 완료되었습니다");
     }
+    @PutMapping(value = "/mypage/profile/edit/{:id}")
+    public ResponseEntity<?> UserUpdate(@RequestParam(required = true) String email, @RequestBody(required = true) LoginSignup loginSignup, HttpServletResponse response){
+        if(loginSignup.getEmail() == null || loginSignup.getBirth() == null || loginSignup.getPassword() == null ||
+                loginSignup.getUsername() == null){
+            return ResponseEntity.badRequest().body("insufficient parameters upplied");
+        }
+
+        ServiceUser user = loginService.FindUserEmail(email);
+
+        loginService.UpdateUserData(loginSignup);
+
+        if(user == null){
+            return ResponseEntity.badRequest().body("not thing");
+        }
+        return ResponseEntity.ok().body(new HashMap<>(){{
+            put("message","ok");
+        }});
+    }
 
     @PostMapping(value = "/signin")
     public ResponseEntity<?> UserSignIn(@RequestBody(required = true) LoginSignin loginSignin, HttpServletResponse response){
@@ -95,6 +113,8 @@ public class LoginController {
         response.addCookie(cookie);
         return ResponseEntity.ok().body("Logged out successfully");
     }
+
+
 
 
     @GetMapping(value = "/auth")
