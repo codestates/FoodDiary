@@ -10,7 +10,7 @@ import SignIn from '../Components/SignIn';
 import SignUp from '../Components/Signup';
 
 
-function Login() {
+function Login({handleResponseSuccess}) {
   const [isLogin, setIsLogin] = useState(false);
   
 const changeLogin=() => {
@@ -37,7 +37,7 @@ const changeLogin=() => {
                   <div className="login_signin">
                     
                     {
-                      isLogin ? <SignIn/> : <SignUp changeLogin={changeLogin}/>
+                      isLogin ? <SignIn handleResponseSuccess={handleResponseSuccess}/> : <SignUp changeLogin={changeLogin}/>
                     }
                     
                     <div className="login_separatordiv">

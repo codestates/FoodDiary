@@ -18,12 +18,6 @@ function MainContent () {
                     <Feeds/>
                   </div>
               </Grid>
-              <Grid item xs={2}>
-                  <Upload/>
-              </Grid>
-              <Grid item xs={2}>
-                  
-              </Grid>
           </Grid>
       </div>
     );

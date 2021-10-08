@@ -6,13 +6,15 @@ import Edit from './Editing';
 import './Posts.css';
 
 
-function Posts () {
+function Posts (props) {
+  const {id, userName, title, postImage, text} = props
+  
       return (
         <div className="post_container">
 
           <div className="post_header">
-            <Avatar className="post_image" src={this.props.profilePic}/>
-            <div className="post_username">{this.props.userName}</div>
+            <Avatar className="post_image" src={postImage}/>
+            <div className="post_username">{userName}</div>
             <div>
               <img style={{ "marginLeft": "1rem","marginTop":"18px" }} className="post_like" src={love} alt="love icon"/> 
             </div>
@@ -23,16 +25,16 @@ function Posts () {
           </div>
 
           <div className="post_title">
-            <h3>{this.props.title}</h3>
+            <h3>{title}</h3>
           </div>
     
           <div>
-            <img src={this.props.postImage} alt="pictures" width="615px"/>
+            <img src={postImage} alt="pictures" width="615px"/>
           </div>
 
           <div className="post_description">
               <h3 style={{"marginLeft": "20px"}}>Photo Description</h3>
-              <p className="post_text">{this.props.text}</p>
+              <p className="post_text">{text}</p>
           </div>
           
         </div>
