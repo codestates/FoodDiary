@@ -14,13 +14,18 @@ function SignIn ({ handleResponseSuccess }) {
     };
     
     const handleLogin = () => {
-        if (loginInfo.email === '' || loginInfo.password === '') {
+        // if (loginInfo.email === '' || loginInfo.password === '') {
 
-        } else {
-          axios.post('https://localhost:4000/signin')
-          .then(handleResponseSuccess);
+        // } else {
+          axios.post('https://localhost:4000/signin',{
+              "email":loginInfo.email,
+              "password":loginInfo.password
+          })
+          .then(()=>{
+            handleResponseSuccess();
+          })
         }
-    };
+    
     return (
         <div>
             <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>

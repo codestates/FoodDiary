@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import friendimg from '../images/pp1.png';
 import './FriendsBar.css';
 
 
-class FriendsBar extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { 
-          statusList: []
-      }
-    }
-    componentDidMount(){
-        this.getData();
-    }
-    getData=()=>{
+function FriendsBar() {
+
+    const [statusList, setStatusList] = useState([]);
+    
+    useEffect(() => {
+      getData()
+    },[]);
+    
+    const getData = ()=>{
         let data = [
             {
                 "username":"kim-coding",
@@ -53,15 +51,15 @@ class FriendsBar extends Component {
                 "imageURL":"../images/pp1.png" 
             }
         ]
-        this.setState({statusList: data});
+        setStatusList(data);
     }
 
-    render() {
+    
       return (
         <div>
           <div className="fbar_container">
               {
-                  this.state.statusList.map((item, index) => (
+                  statusList.map((item) => (
                     <div className="fbar">
                         <Avatar className="fbar_profile" src={friendimg}/>
                         <div className="fbar_friendname">{item.username}</div>
@@ -72,7 +70,7 @@ class FriendsBar extends Component {
           </div>
         </div>
       );
-    }
+        
   }
   
   
