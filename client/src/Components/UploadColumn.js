@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sticky from 'react-sticky-el';
 import uploadIcon from '../images/upload.png'
 import './UploadColumn.css';
 
 
-class Upload extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { }
-    }
-    render() {
+function Upload () {
+    
         return (
           <Sticky>
             <div className="upload_container">
@@ -35,6 +31,5 @@ class Upload extends Component {
           </Sticky>
         )
     }
-}
 
 export default Upload;

@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
-import './Login.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../Pages/Login.css';
 
 
-class SignIn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { }
-    }
-    render() {
-        return (
-            <div>
-                <input className="login_text" type="text" placeholder="Email"/>
-                <input className="login_text" type="password" placeholder="Password"/>
-                <button className="login_btn">Log In</button>
-            </div>
-        )
-    }
+function SignIn ({ handleResponseSuccess }) {
+    const [loginInfo, setLoginInfo] = useState({
+        email: '',
+        password: ''
+    });
+    
+    const handleInputValue = (key) => (e) => {
+        setLoginInfo({ ...loginInfo, [key]: e.target.value });
+    };
+    
+    const handleLogin = () => {
+        if (loginInfo.email === '' || loginInfo.password === '') {
+
+        } else {
+          axios.post('https://localhost:4000/signin')
+          .then(handleResponseSuccess);
+        }
+    };
+    return (
+        <div>
+            <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
+            <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
+            <button className="login_btn" onClick={handleLogin}>Log In</button>
+        </div>
+    )
 }
+
 
 export default SignIn;

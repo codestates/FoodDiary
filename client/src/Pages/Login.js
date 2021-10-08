@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import login_image from '../images/9364675fb26a.svg';
 import logo_image from '../images/Food_Diary_Logo.png';
@@ -6,29 +6,21 @@ import appstore from '../images/app.png';
 import playstore from '../images/play.png';
 import apoint from '../images/Apoint_Logo.png';
 import './Login.css';
-import SignIn from './SignIn';
-import SignUp from './Signup';
+import SignIn from '../Components/SignIn';
+import SignUp from '../Components/Signup';
 
 
+function Login() {
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogin: true
-    }
-  }
-
-  changeLogin=() => {
+  
+const changeLogin=({isLogin}) => {
     if (this.state.isLogin){
       this.setState({isLogin: false});
     } else {
       this.setState({isLogin: true});
     }   
   }
-
-  render() {
-    return (
+  return (
       <div>
         <Grid container>
           <Grid item xs={3}>
@@ -45,11 +37,9 @@ class Login extends Component {
                   <div className="login_signin">
                     
                     {
-                      this.state.isLogin ? <SignIn/> : <SignUp/>
+                      this.setState.isLogin ? <SignIn/> : <SignUp/>
                     }
                     
-                    
-
                     <div className="login_separatordiv">
                       <div className="login_dividor"></div>
                       <div className="login_fd">F. D.</div>
@@ -70,10 +60,10 @@ class Login extends Component {
                     {
                       this.state.isLogin ? 
                       <div className="login_signup">
-                        Have an Invitation? <span onClick={this.changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
+                        Have an Invitation? <span onClick={()=>this.changeLogin()} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
                       </div> :
                       <div className="login_signin">
-                        Have an Account? <span onClick={this.changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
+                        Have an Account? <span onClick={()=>this.changeLogin()} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
                       </div>
                     }
 
@@ -96,8 +86,6 @@ class Login extends Component {
             </Grid>
         </Grid>
       </div>
-    );
-  }
+  );
 }
-
 export default Login;

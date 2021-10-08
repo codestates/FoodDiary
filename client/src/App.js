@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
-import Signup from './components/Signup'
-import Mainpage from './components/Mainpage';
+import Login from './Pages/Login';
+import Signup from './Components/Signup'
+import Mainpage from './Pages/Mainpage';
 import axios from 'axios';
 
 
 export default function App() {
-
+  
   const [isLogin, setIsLogin] = useState(false);
+  // const [userInfo, setUserInfo] = useState("");
+
   const history = useHistory();
   const isAuthenticated = () => {
-    axios.post('https://localhost:4000/auth')
+    axios.get('https://localhost:4000/auth')
     .then(setIsLogin(true));
+    history.push("/")
+    console.log("aaaa");
   };
   
   const handleResponseSuccess = () => {
@@ -27,9 +31,9 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    isAuthenticated();
-  }, []);
+  // useEffect(() => {
+  //   isAuthenticated();
+  // },[userInfo]);
   
 
   return (
@@ -42,7 +46,7 @@ export default function App() {
           />
         </Route>
         <Route exact path='/signup'>
-          <Signup isLogin={isLogin} />
+          <Signup/>
         </Route>
         <Route exact path='/mainpage'>
           <Mainpage handleLogout={handleLogout}/>
