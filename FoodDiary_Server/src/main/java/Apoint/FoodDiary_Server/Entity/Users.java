@@ -1,5 +1,6 @@
 package Apoint.FoodDiary_Server.Entity;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,20 +14,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Friends {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn (name = "user_id")
-    private Users users;
+    @Column
+    private String username;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @OneToMany(mappedBy ="friends")
-    private List<ArticleFriends> articleFriendsList = new ArrayList<>();
-
+    @OneToMany(mappedBy = "users")
+    private List<Friends> friendsList = new ArrayList<>();
 }

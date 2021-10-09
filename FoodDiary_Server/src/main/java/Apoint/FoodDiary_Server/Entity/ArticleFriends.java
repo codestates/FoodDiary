@@ -1,13 +1,19 @@
 package Apoint.FoodDiary_Server.Entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class ArticleFriends {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
@@ -15,32 +21,8 @@ public class ArticleFriends {
     private Friends friends;
 
     @ManyToOne
-    @JoinColumn(name = "articleUser_id")
+    @JoinColumn(name = "article_user_id")
     private ArticleUser articleUser;
 
-    public ArticleFriends(){}
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Friends getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Friends friends) {
-        this.friends = friends;
-    }
-
-    public ArticleUser getArticleUser() {
-        return articleUser;
-    }
-
-    public void setArticleUser(ArticleUser articleUser) {
-        this.articleUser = articleUser;
-    }
 }

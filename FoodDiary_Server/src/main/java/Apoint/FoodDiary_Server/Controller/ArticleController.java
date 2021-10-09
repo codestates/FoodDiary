@@ -42,9 +42,9 @@ public class ArticleController {
     }
 
     @GetMapping(value = "/article/")
-    public List<ArticleUser> FindByTitleArticle(@RequestParam(required = false) String title) {
+    public List<ArticleUser> FindByEmailArticle(@RequestParam(required = false) String email) {
 
-        return articleService.FindByTitleService(title);
+        return articleService.FindByEmailService(email);
     }
 
 
