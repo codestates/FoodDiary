@@ -2,17 +2,15 @@ package Apoint.FoodDiary_Server.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Article_TBL")
 public class ArticleUser {
     @Id
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "service_User_id")
-    private ServiceUser serviceUser;
 
     @Column(nullable = false)
     private String title;
@@ -34,7 +32,22 @@ public class ArticleUser {
     @Column(nullable = false)
     private boolean admin;
 
+    @OneToMany(mappedBy = "articleUser")
+    private List<Friends> friendsList = new ArrayList<>();
+
     public ArticleUser(){};
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Friends> getFriendsList() {
+        return friendsList;
+    }
+
+    public void setFriendsList(List<Friends> friendsList) {
+        this.friendsList = friendsList;
+    }
 
     public long getId() {
         return id;
@@ -42,14 +55,6 @@ public class ArticleUser {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public ServiceUser getServiceUser() {
-        return serviceUser;
-    }
-
-    public void setServiceUser(ServiceUser serviceUser) {
-        this.serviceUser = serviceUser;
     }
 
     public String getTitle() {

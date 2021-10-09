@@ -37,11 +37,19 @@ public class ServiceUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "serviceUser")
-    private List<ArticleUser> articleUserList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "serviceUser")
+    private List<Friends> friendsList = new ArrayList<>();
 
     public ServiceUser(){ }
+
+    public List<Friends> getFriendsList() {
+        return friendsList;
+    }
+
+    public void setFriendsList(List<Friends> friendsList) {
+        this.friendsList = friendsList;
+    }
 
     public long getId() {
         return id;

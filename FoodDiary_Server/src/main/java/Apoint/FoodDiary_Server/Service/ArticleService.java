@@ -49,9 +49,9 @@ public class ArticleService {
         return articleRepository.FindById(id);
     }
 
-    public ArticleUser FindByTitleService(String title){
+    public List<ArticleUser> FindByTitleService(String title){
 
-        return articleRepository.FindByTitle(title).get(0);
+        return articleRepository.FindByTitle(title);
     }
 
     public void UpdateUserService (ArticleUser article){
