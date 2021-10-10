@@ -3,15 +3,41 @@ import Sticky from 'react-sticky-el';
 import uploadIcon from '../images/upload.png'
 import './UploadColumn.css';
 import axios from 'axios';
+import { useDropzone } from "react-dropzone"
+import './UploadColumn.css';
 function Upload () {
+  const [files, setFiles] = useState([])
+
+  const images = files.map((file) => (
+    <div key={file.name}>
+      <div style={{ textAlign: "center"}}>
+        <img src={file.preview} style={{ width: "50%" }} alt="preview" />
+      </div>
+    </div>
+  ))
+
+  //{~~,~~}
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      )
+    },
+  })
 
   const [feedInfo, setFeedInfo] = useState({
       title: '',
-      img: 'aaa',
+      img: null,
       comment:''
     });
     const handleInputValue = (key) => (e) => {
       setFeedInfo({ ...feedInfo, [key]: e.target.value });
+      console.log(images[0].key)
     };
     
     const UploadFeed = ()=> {
@@ -36,19 +62,23 @@ function Upload () {
           <Sticky>
             <div className="upload_container">
             
-            <div className="upload_title">
-              <input type="text" placeholder="Title Here!" onChange={handleInputValue('title')}></input>
-            </div>
+            
+              <input type="text" placeholder="Title Here!" onChange={handleInputValue('title')}/>
+            
       
-            <div>
-            uploading an image here
-              <img src="" alt="pictures"  width="450px"/>
-          {/* 이미지 들어가는데 onChange={handleInputValue('image') */}
+            <div {...getRootProps()}>
+              <input {...getInputProps() } />
+              <p style={{textAlign: "center"}}>Drop files here</p>
             </div>
+            <div>{images}</div>
+
+           
   
             <div className="upload_description" >
                 <textarea className="upload_text" type="textbox" placeholder="Comments Here!" onChange={handleInputValue('comment')}/>
             </div>
+
+            
 
             <div>
               <img className="upload_btn" onClick={UploadFeed} src={uploadIcon} alt="pictures" width="615px"/>

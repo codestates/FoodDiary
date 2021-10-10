@@ -2,13 +2,12 @@
     width: 450px;
     border: 1px solid #dbdbdb;
     background-color: white;
-    margin-top: 45px;
+    margin-top: 200px;
     
 }
 
 .upload_title {
     font-weight: bold;
-    text-align: center;
     border-bottom: 1px solid #dbdbdb;
 }
 
@@ -23,7 +22,6 @@
     border: 1px solid #dbdbdb;
     height: 110px;
     width: 420px;
-    resize:none;
 }
 
 .upload_btn {
