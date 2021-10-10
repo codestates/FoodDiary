@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Feeds.css';
 import Posts from './Posts';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Feeds () {
     const [postArray, setPostArray] = useState([]);
@@ -42,17 +42,29 @@ function Feeds () {
 
    
     return (
-      <div>
-          {
-            postArray.map((item)=>(
-              <Posts id={item.postId} userName={item.userName} title={item.imageTitle} 
-                      postImage={item.postImageURL} text={item.explanation}/>
-            ))
+      <InfiniteScroll 
+      dataLength= {postArray.length}
+      next={() => {
+        for(let i = 0; i < postArray.length; i++){
+           return postArray[i]
+      }
+        }} // 여기가 에러인듯
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>You've watched all the feeds</b>
+            </p>
           }
-        <div>
-        
-        </div>
-      </div>
+      >
+      {
+        postArray.map((item)=>( // postArray is not a function??
+          <Posts id={item.postId} userName={item.userName} title={item.imageTitle} 
+                        postImage={item.postImageURL} text={item.explanation}/>
+        ))
+      }
+
+      </InfiniteScroll>
     );
   }
 

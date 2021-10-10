@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import NavigationBar from '../Components/NavigationBar';
 import MainContent from '../Components/MainContent';
+import Side from '../Components/Side';
 import './Mainpage.css';
 import UploadColumn from '../Components/UploadColumn'
 import Invitation from '../Components/Invitation'
+import Grid from '@mui/material/Grid';
 
 function Mainpage ({handleLogout}) {
   
@@ -23,25 +25,19 @@ function Mainpage ({handleLogout}) {
     return (
       <div>
         <NavigationBar handleIconClick={handleIconClick} handleLogout={()=>{handleLogout()}} />
-        <MainContent/>
+        <Grid container>
+          <Grid item xs={2}></Grid>
 
-        {!globalState.currentPage ? (
-                  'loading'
-                ) : globalState.currentPage === 'home' ? (
-                  <React.Fragment>
-                    <div className="tweetForm__container ">
-                      <div className="tweetForm__wrapper">
-                        <div className="tweetForm__profile"></div>
-                        <UploadColumn />
-                      </div>
-                    </div>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <Invitation />
-                  </React.Fragment>
-                )
-                }
+            <Grid item xs={6}>
+              <MainContent/>
+            </Grid>
+
+            <Grid item xs={2}>
+              <Side globalState={globalState}/>
+            </Grid>
+
+            <Grid item xs={2}></Grid>
+        </Grid>
       </div>
     );
   }

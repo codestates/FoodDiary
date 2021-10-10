@@ -19,8 +19,8 @@ function Posts (props) {
               <img style={{ "marginLeft": "1rem","marginTop":"18px" }} className="post_like" src={love} alt="love icon"/> 
             </div>
             <div>
-            <img onClick={()=>{ alert('Edit Post'); }} style={{ "marginLeft": "8rem","marginTop":"18px", "cursor":"pointer", "width":"15px"}} src={editicon} alt="editing icon" />
-              <Edit/>
+            <img onClick={()=>{ alert('Edit Post'); }} style={{"height":"27px", "marginLeft": "8rem","marginTop":"18px", "cursor":"pointer", "width":"30px"}} src={editicon} alt="editing icon" />
+              
             </div>
           </div>
 

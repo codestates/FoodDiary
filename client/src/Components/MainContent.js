@@ -3,23 +3,18 @@ import Grid from '@mui/material/Grid';
 import './MainContent.css';
 import FriendsBar from './FriendsBar';
 import Feeds from './Feeds';
+import Side from './Side'
 
 
 function MainContent () {
 
-    return (
-      <div>
-          <Grid container>
-              <Grid item xs={2}></Grid>
-              <Grid item xs={6}>
-                  <div>
-                    <FriendsBar/>
-                    <Feeds/>
-                  </div>
-              </Grid>
-          </Grid>
-      </div>
-    );
+  return (
+    <div>       
+      <FriendsBar/>
+      <Feeds/>
+    </div>
+  )
+    
   }
 
 
