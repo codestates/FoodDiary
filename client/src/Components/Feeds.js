@@ -54,7 +54,6 @@ function Feeds () {
         </div>
       </div>
     );
-    return null
   }
 
   

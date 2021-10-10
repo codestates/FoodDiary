@@ -1,32 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import NavigationBar from '../Components/NavigationBar';
 import MainContent from '../Components/MainContent';
 import './Mainpage.css';
-import Upload from '../Components/UploadColumn';
+import UploadColumn from '../Components/UploadColumn'
+import Invitation from '../Components/Invitation'
 
 function Mainpage ({handleLogout}) {
   
-  // const [globalState, setGlobalState] = useState({
-  //   currentPage: 'upload',
-  // });
-  const handleIconClick = (event) => {
-    // if (event.target.classList.contains('fa-comment-dots')) {
-    //   setGlobalState({ currentPage: 'tweets' });
-    // }
+  const [globalState, setGlobalState] = useState({
+    currentPage:'home'
+  });
 
-    // if (event.target.classList.contains('fa-bell')) {
-    //   setGlobalState({ currentPage: 'notifications' });
-    // }
-    console.log("???");
+  const handleIconClick = (event) => {
+    if (event.target.classList.contains('home')) {
+      setGlobalState({ currentPage: 'home' });
+    }
+    if (event.target.classList.contains('invitation')) {
+      setGlobalState({ currentPage: 'invitation' });
+    }
   };
-  
   
     return (
       <div>
-        <NavigationBar handleLogout={()=>{handleLogout()}} handleIconClick={handleIconClick} />
-        
+        <NavigationBar handleIconClick={handleIconClick} handleLogout={()=>{handleLogout()}} />
         <MainContent/>
-        <Upload />
+
+        {!globalState.currentPage ? (
+                  'loading'
+                ) : globalState.currentPage === 'home' ? (
+                  <React.Fragment>
+                    <div className="tweetForm__container ">
+                      <div className="tweetForm__wrapper">
+                        <div className="tweetForm__profile"></div>
+                        <UploadColumn />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <Invitation />
+                  </React.Fragment>
+                )
+                }
       </div>
     );
   }

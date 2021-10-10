@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import './App.css';
 import Login from './Pages/Login';
-import Signup from './Components/Signup'
 import Mainpage from './Pages/Mainpage';
 import axios from 'axios';
 
@@ -10,39 +9,55 @@ import axios from 'axios';
 export default function App() {
   
   const [isLogin, setIsLogin] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserinfo] = useState();
 
   const history = useHistory();
   const isAuthenticated = () => {
-    axios.get('https://localhost:4000/auth').then((res)=>{
-      console.log(res);
-      console.log(res.data);
-      console.log("????")
+      axios.get('https://localhost:4000/auth')
+      .then((res) => {
+        if(res.data.data.userInfo !== null){
+          const {email, username, birth} = res.data.data.userInfo;
+          console.log(res)
+          setUserinfo({
+            email:email,
+            username:username,
+            birth:birth
+        });
+        console.log(userInfo)
+        setIsLogin(true)
+      }
+        history.push('/')
     })
-    setIsLogin(true);
-    history.push("/")
-    console.log("aaaa");
-  };
- 
+  }
+   
+      
+    //   const {email, username, birth} = res.data.userInfo;
+    //   setUserinfo({
+    //     email,username,birth
+    //   });
+    //   setIsLogin(true);
+    //   history.push("/")
+    //   console.log(userInfo);
+    // })
+    
+  // };
+  
   const handleResponseSuccess = () => {
     isAuthenticated();
   };
 
   const handleLogout = () => {
     axios.post('https://localhost:4000/signout').then((res) => {
+      setUserinfo(null);
       setIsLogin(false);
-      history.push('/login');
+      history.push('/');
     });
   };
 
-  
+  // useEffect(() => {
+  //   isAuthenticated();
+  // },[]);
 
-  useEffect(() => {
-    isAuthenticated();
-  },[]);
-
-  
-  
 
   return (
     <div>

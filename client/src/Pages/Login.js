@@ -8,11 +8,34 @@ import apoint from '../images/Apoint_Logo.png';
 import './Login.css';
 import SignIn from '../Components/SignIn';
 import SignUp from '../Components/Signup';
+import axios from 'axios';
 
 
 function Login({handleResponseSuccess}) {
   const [isLogin, setIsLogin] = useState(false);
-  
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
+    password: ''
+});
+
+const handleInputValue = (key) => (e) => {
+    setLoginInfo({ ...loginInfo, [key]: e.target.value });
+};
+
+const handleLogin = () => {
+    // if (loginInfo.email === '' || loginInfo.password === '') {
+
+    // } else {
+      axios.post('https://localhost:4000/signin',{
+          "email":loginInfo.email,
+          "password":loginInfo.password
+      })
+      .then((res)=>{
+        console.log(res);
+        handleResponseSuccess();
+      })
+}
+
 const changeLogin=() => {
     if (isLogin){
       setIsLogin(false);
@@ -37,7 +60,11 @@ const changeLogin=() => {
                   <div className="login_signin">
                     
                     {
-                      isLogin ? <SignIn handleResponseSuccess={handleResponseSuccess}/> : <SignUp changeLogin={changeLogin}/>
+                      isLogin ? <div>
+                      <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
+                      <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
+                      <button className="login_btn" onClick={handleLogin}>Log In</button>
+                  </div> : <SignUp changeLogin={changeLogin}/>
                     }
                     
                     <div className="login_separatordiv">
