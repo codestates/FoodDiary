@@ -3,7 +3,6 @@ package Apoint.FoodDiary_Server.Repository;
 
 import Apoint.FoodDiary_Server.Domain.Article;
 import Apoint.FoodDiary_Server.Domain.ArticleResDTO;
-import Apoint.FoodDiary_Server.Domain.FriendDTO;
 import Apoint.FoodDiary_Server.Entity.ArticleFriends;
 import Apoint.FoodDiary_Server.Entity.ArticleUser;
 import Apoint.FoodDiary_Server.Entity.Friends;
