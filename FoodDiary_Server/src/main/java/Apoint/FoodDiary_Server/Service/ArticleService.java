@@ -22,14 +22,9 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-//    public ArticleUser createArticle(ArticleUser article){
-//
-//        return articleRepository.save(article);
-//    }
-
     public ArticleUser CreateService(Article article){
         for(ArticleUser i : articleRepository.FindAll()){
-            if(i.getEmail().equals(article.getEmail()) && i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
+            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
                     i.getImage().equals(article.getImage())){
                 return null;
             }
@@ -48,9 +43,9 @@ public class ArticleService {
         return articleRepository.FindById(id);
     }
 
-    public List<ArticleUser> FindByEmailService(String email){
+    public List<ArticleUser> FindByTitleService(String title){
 
-        return articleRepository.FindByEmail(email);
+        return articleRepository.FindByTitle(title);
     }
 
     public void UpdateUserService (ArticleUser article){
@@ -61,17 +56,5 @@ public class ArticleService {
     public void DeleteService(long id){
         articleRepository.Delete(id);
     }
-
-//    public ArticleUser UpdateUserService(Article article){
-//        for(ArticleUser i : articleRepository.FindAll()){
-//            if(i.getTitle().equals(article.getTitle())){
-//                articleRepository.UpdateService(article, i.getId());
-//                return articleRepository.FindById(i.getId());
-//            }
-//        }
-//        return null;
-//    }
-
-
 
 }

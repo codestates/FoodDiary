@@ -9,7 +9,6 @@ import lombok.Setter;
 public class ArticleResDTO {
 
     private long id;
-    private String email;
     private String title;
     private String comment;
     private String image;

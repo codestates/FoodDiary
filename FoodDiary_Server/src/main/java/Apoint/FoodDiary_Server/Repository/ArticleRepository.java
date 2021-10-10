@@ -36,11 +36,11 @@ public class ArticleRepository {
         return list.get(0);
     }
 
-    public List<ArticleUser> FindByEmail(String email){
+    public List<ArticleUser> FindByTitle(String title){
         // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
         // TODO :
         List<ArticleUser> list = entityManager
-                .createQuery("SELECT user FROM ArticleUser as user WHERE user.email='" + email + "'", ArticleUser.class)
+                .createQuery("SELECT user FROM ArticleUser as user WHERE user.title='" + title + "'", ArticleUser.class)
                 .getResultList();
         entityManager.close();
         return list;
@@ -52,7 +52,6 @@ public class ArticleRepository {
         Date now = new Date();
         ArticleUser user = new ArticleUser();
         user.setId(id);
-        user.setEmail(article.getEmail());
         user.setImage(article.getImage());
         user.setTitle(article.getTitle());
         user.setComment(article.getComment());
@@ -70,7 +69,6 @@ public class ArticleRepository {
         ArticleUser user = FindById(articleUser.getId());
         Date now = new Date();
 
-        user.setEmail(articleUser.getEmail());
         user.setImage(articleUser.getImage());
         user.setTitle(articleUser.getTitle());
         user.setComment(articleUser.getComment());
