@@ -19,9 +19,6 @@ public class ArticleUser {
     private long id;
 
     @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)

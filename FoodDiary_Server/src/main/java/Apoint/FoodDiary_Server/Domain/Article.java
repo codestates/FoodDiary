@@ -8,7 +8,6 @@ import lombok.Setter;
 public class Article {
 
     private long articleId;
-    private String email;
     private String title;
     private String image;
     private String comment;

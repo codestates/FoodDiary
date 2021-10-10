@@ -61,7 +61,6 @@ public class FriendRepository {
                 ArticleResDTO articleResDTO = new ArticleResDTO();
                 articleResDTO.setId(articleFriends.getId());
                 articleResDTO.setTitle(articleFriends.getArticleUser().getTitle());
-                articleResDTO.setEmail(articleFriends.getArticleUser().getEmail());
                 articleResDTO.setImage(articleFriends.getArticleUser().getImage());
                 articleResDTO.setComment(articleFriends.getArticleUser().getComment());
                 list.add(articleResDTO);
