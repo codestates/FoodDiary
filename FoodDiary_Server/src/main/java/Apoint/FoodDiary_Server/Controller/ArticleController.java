@@ -38,10 +38,16 @@ public class ArticleController {
     @GetMapping(value = "/article")
     public ArticleUser FindByIdArticle(@RequestParam(required = false) Long id) {
 
-//        List<ArticleUser> articleUsers = articleService.getArticlAll();
-
-        return articleService.FindByIdService(id);
+            return articleService.FindByIdService(id);
     }
+
+    @GetMapping(value = "/article/")
+    public List<ArticleUser> FindByEmailArticle(@RequestParam(required = false) String email) {
+
+        return articleService.FindByEmailService(email);
+    }
+
+
 
     @PutMapping(value = "/article")
     public void updateArticle(@RequestBody ArticleUser articleUser) {

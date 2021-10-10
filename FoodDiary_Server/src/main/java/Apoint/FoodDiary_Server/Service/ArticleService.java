@@ -9,7 +9,6 @@ import Apoint.FoodDiary_Server.Repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,7 +29,7 @@ public class ArticleService {
 
     public ArticleUser CreateService(Article article){
         for(ArticleUser i : articleRepository.FindAll()){
-            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
+            if(i.getEmail().equals(article.getEmail()) && i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
                     i.getImage().equals(article.getImage())){
                 return null;
             }
@@ -44,14 +43,14 @@ public class ArticleService {
         return articleRepository.FindAll();
     }
 
-    public ArticleUser FindByIdService(Long id){
+    public ArticleUser FindByIdService(long id){
 
         return articleRepository.FindById(id);
     }
 
-    public ArticleUser FindByTitleService(String title){
+    public List<ArticleUser> FindByEmailService(String email){
 
-        return articleRepository.FindByTitle(title).get(0);
+        return articleRepository.FindByEmail(email);
     }
 
     public void UpdateUserService (ArticleUser article){
@@ -59,7 +58,7 @@ public class ArticleService {
          articleRepository.Update(article);
     }
 
-    public void DeleteService(Long id){
+    public void DeleteService(long id){
         articleRepository.Delete(id);
     }
 

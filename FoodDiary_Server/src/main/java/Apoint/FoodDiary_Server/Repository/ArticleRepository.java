@@ -36,22 +36,23 @@ public class ArticleRepository {
         return list.get(0);
     }
 
-    public List<ArticleUser> FindByTitle(String title){
+    public List<ArticleUser> FindByEmail(String email){
         // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
         // TODO :
         List<ArticleUser> list = entityManager
-                .createQuery("SELECT user FROM ArticleUser as user WHERE user.title='" + title + "'", ArticleUser.class)
+                .createQuery("SELECT user FROM ArticleUser as user WHERE user.email='" + email + "'", ArticleUser.class)
                 .getResultList();
         entityManager.close();
         return list;
     }
 
-    public void Create(Article article, Long id){
+    public void Create(Article article, long id){
         // DB service_user 테이블에 매개변수 loginSignUp과 id에 데이터를 사용하여 유저 정보를 저장합니다.
         // TODO :
         Date now = new Date();
         ArticleUser user = new ArticleUser();
         user.setId(id);
+        user.setEmail(article.getEmail());
         user.setImage(article.getImage());
         user.setTitle(article.getTitle());
         user.setComment(article.getComment());
@@ -69,6 +70,7 @@ public class ArticleRepository {
         ArticleUser user = FindById(articleUser.getId());
         Date now = new Date();
 
+        user.setEmail(articleUser.getEmail());
         user.setImage(articleUser.getImage());
         user.setTitle(articleUser.getTitle());
         user.setComment(articleUser.getComment());
@@ -81,7 +83,7 @@ public class ArticleRepository {
         entityManager.close();
     }
 
-    public void Delete(Long id){
+    public void Delete(long id){
 
         ArticleUser user = FindById(id);
         entityManager.remove(user);
