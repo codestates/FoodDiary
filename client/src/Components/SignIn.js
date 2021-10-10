@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../Pages/Login.css';
 
 
-function SignIn ({ handleResponseSuccess }) {
+function SignIn () {
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: ''
@@ -22,9 +22,11 @@ function SignIn ({ handleResponseSuccess }) {
               "password":loginInfo.password
           })
           .then(()=>{
-            handleResponseSuccess();
+            
+            console.log("work bridge")
           })
-        }
+        // }
+    }
     
     return (
         <div>

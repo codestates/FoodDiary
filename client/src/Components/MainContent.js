@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import './MainContent.css';
 import FriendsBar from './FriendsBar';
 import Feeds from './Feeds';
-import Upload from './UploadColumn';
 
 
 function MainContent () {

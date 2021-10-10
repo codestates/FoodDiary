@@ -23,6 +23,7 @@
     border: 1px solid #dbdbdb;
     height: 110px;
     width: 420px;
+    resize:none;
 }
 
 .upload_btn {
