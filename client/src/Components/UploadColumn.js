@@ -24,8 +24,8 @@ function Upload () {
 
   const images = files.map((file) => (
     <div key={file.name}>
-      <div>
-        <img src={file.preview} style={{ width: "450px", height: "200px" }} alt="preview" />
+      <div style={{ textAlign: "center"}}>
+        <img src={file.preview} style={{ width: "50%" }} alt="preview" />
       </div>
     </div>
   ))

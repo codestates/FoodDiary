@@ -27,8 +27,8 @@ function NavigationBar({handleIconClick, handleLogout}) {
               <Grid item xs={3} style={{"display":"flex"}}>
                   
                   <img className="navibar_img" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
-                  <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={friends} alt="friends icon" width="25px"/>
-                  <img className="navibar_img" onClick={()=>{ alert('Edit Post'); }} src={invitation} alt="invitation icon" width="25px"/>
+                  <img className="navibar_img" onClick={()=>{ alert('FriendsPost') }} src={friends} alt="friends icon" width="25px"/>
+                  <img className="navibar_img" onClick={()=>{ alert('Invitation Letter') }} src={invitation} alt="invitation icon" width="25px"/>
                   <Avatar className="navibar_img" onClick={handleLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
               </Grid>
               <Grid item xs={1}></Grid>

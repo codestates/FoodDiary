@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
  function SignUp(props)  {
+  const [errorMessage, setErrorMessage] = useState('');
   const [userinfo, setuserinfo] = useState({
     email: '',
     password: '',
@@ -20,9 +21,13 @@ import axios from 'axios';
 
   const handleSignup = () => {
     
-    // if(userinfo.email === "" || userinfo.password === "" || userinfo.username === "" || userinfo.mobile === ""){
-      
-    // } else{
+    if(userinfo.email === undefined || 
+    userinfo.password === undefined || 
+    userinfo.username === undefined || 
+    userinfo.birth === undefined||
+    userinfo.code === undefined){
+      setErrorMessage('All fields are required!')
+    } else{
       axios.post('https://localhost:4000/signup',{
         'email' : userinfo.email,
         'password' : userinfo.password,
@@ -34,7 +39,7 @@ import axios from 'axios';
       props.changeLogin();
 
       
-    // }
+    }
   };
 
   const checkPassword = (e) => {
@@ -59,12 +64,14 @@ import axios from 'axios';
   
     return (
       <div>
+         <div className='alert-box' style={{color:"red"}} >{errorMessage}</div>
         <input className="login_text" type="text" placeholder="Email" onBlur={checkEmail} onChange={handleInputValue('email')}/>
         <input className="login_text" type="password" placeholder="Password = 8~10 letters with numbers" onBlur={checkPassword} onChange={handleInputValue('password')}/>
         <input className="login_text" type="text" placeholder="Full Name" onChange={handleInputValue('name')}/>
         <input className="login_text" type="text" placeholder="Birthday YYMMDD" onChange={handleInputValue('birth')}/>
         <input className="login_text" type="text" placeholder="Invitation Code" onChange={handleInputValue('code')}/>
         <button className="login_btn" onClick={handleSignup}>Sign Up</button>
+       
       </div> 
     );
   }

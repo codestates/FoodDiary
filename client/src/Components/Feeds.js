@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import './Feeds.css';
 import Posts from './Posts';
 
 
 function Feeds () {
     const [postArray, setPostArray] = useState([]);
-    
+
     useEffect(() => {
       getPost()
     },[]);
@@ -36,23 +37,273 @@ function Feeds () {
           "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
           "updatedAt":"12345"
         },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
+        {
+          "postId":"123",
+          "userName":"parkhacker",
+          "imageTitle":"this is a rock",
+          "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/fruit-bowl_4MUZH41WMD.jpg",
+          "explanation":"이 사진은 blueberries and strawberriesss helldlfkddklasdlkflkasdflkjas dlkfjals h oiwefo i wiofh qwihf klsahjf ajdsjfklasdjfklas lkasf askf laksjf asfkldsjfklajeoifjqkl; gakj;hdg asoig adjf kdsnfioq jgn qpgh qiohgioq gpih eiphg ehgioqehigo eig rioq[qohgq erhg roiighioehgehgioehwg poiqhgioqhgioqhioghqio gioqhg qioh아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀 에베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베베 ㅔㅔ베베베벱베ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ ㅔ베베벱 ㅔㅂ 베 베베베베베베베베베베베베베",
+          "updatedAt":"12345"
+        },
       ];
       setPostArray(data);
     }
 
+    //post 함수만 만들고 그걸 return 할때 사용 하면 되는데...
+    
+      
+    
    
     return (
-      <div>
-          {
-            postArray.map((item)=>(
-              <Posts id={item.postId} userName={item.userName} title={item.imageTitle} 
-                      postImage={item.postImageURL} text={item.explanation}/>
-            ))
+      
+      <InfiniteScroll 
+      dataLength= {postArray.length}
+      next={() => {
+        for(let i = 0; i < postArray.length; i++){
+           return postArray[i]
+      }
+        }} // 여기가 에러인듯
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>You've watched all the feeds</b>
+            </p>
           }
-        <div>
-        
-        </div>
-      </div>
+      >
+      {
+        postArray.map((item)=>( // postArray is not a function??
+          <Posts id={item.postId} userName={item.userName} title={item.imageTitle} 
+                        postImage={item.postImageURL} text={item.explanation}/>
+        ))
+      }
+      
+      </InfiniteScroll>
+      
     );
   }
 
