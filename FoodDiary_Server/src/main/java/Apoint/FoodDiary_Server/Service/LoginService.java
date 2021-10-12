@@ -1,9 +1,8 @@
 package Apoint.FoodDiary_Server.Service;
 
 
-import Apoint.FoodDiary_Server.Domain.LoginSignin;
-import Apoint.FoodDiary_Server.Domain.LoginSignup;
-import Apoint.FoodDiary_Server.Domain.MailDto;
+import Apoint.FoodDiary_Server.Domain.SigninDTO;
+import Apoint.FoodDiary_Server.Domain.SingupDTO;
 import Apoint.FoodDiary_Server.Entity.ServiceGuest;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Repository.LoginRepository;
@@ -11,7 +10,6 @@ import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.util.*;
 
@@ -26,10 +24,10 @@ public class LoginService {
         this.loginRepository = loginRepository;
     }
 
-    public ServiceUser FindUserData(LoginSignin loginSignin){
-        List<ServiceUser> user = loginRepository.FindByEmail(loginSignin.getEmail());
+    public ServiceUser FindUserData(SigninDTO signinDTO){
+        List<ServiceUser> user = loginRepository.FindByEmail(signinDTO.getEmail());
         for (ServiceUser i : user){
-            if (i.getPassword().equals(loginSignin.getPassword())){
+            if (i.getPassword().equals(signinDTO.getPassword())){
                 return i;
             }
         }
@@ -90,14 +88,14 @@ public class LoginService {
         }
     }
 
-    public ServiceUser CreateUserData(LoginSignup loginSignup){
+    public ServiceUser CreateUserData(SingupDTO singupDTO){
         for(ServiceUser i : loginRepository.FindUserList()){
-            if(i.getEmail().equals(loginSignup.getEmail())){
+            if(i.getEmail().equals(singupDTO.getEmail())){
                 return null;
             }
         }
-        loginRepository.CreateServiceUser(loginSignup);
-        return loginRepository.FindByEmail(loginSignup.getEmail()).get(0);
+        loginRepository.CreateServiceUser(singupDTO);
+        return loginRepository.FindByEmail(singupDTO.getEmail()).get(0);
     }
 
     public Boolean CheckGuestData(String email) {

@@ -3,21 +3,25 @@ import './Feeds.css';
 import Posts from './Posts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
+import zIndex from '@mui/material/styles/zIndex';
 
 function Feeds () {
     const [postArray, setPostArray] = useState([]);
     
-    useEffect(() => {
-      getPost()
-    },[]);
+   
 
     
 
     const getPost = ()=> {
       axios.get('https://localhost:4000/articles')
           .then((data)=>{
-            setPostArray(data);
+            if(data.length===0){
+              setPostArray([])
+            }
+            console.log(data.data)
+            setPostArray(data.data);
           })
+          
       // let data=[
       //   {
       //     "postId":"123",
@@ -46,33 +50,42 @@ function Feeds () {
       // ];
       // setPostArray(data);
     }
+    useEffect(()=>{
+      getPost();
+    },[])
 
-   
     return (
-      <InfiniteScroll 
-      dataLength= {postArray.length}
-      next={() => {
-        for(let i = 0; i < postArray.length; i++){
-           return postArray[i]
-      }
-        }} // 여기가 에러인듯
-      hasMore={true}
-      loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>You've watched all the feeds</b>
-            </p>
-          }
-      >
-      {
-        postArray.map((item)=>( // postArray is not a function??
-          <Posts id={item.postId} userName={item.userName} title={item.imageTitle} 
-                        postImage={item.postImageURL} text={item.explanation}/>
-        ))
-      }
-
-      </InfiniteScroll>
-    );
+      <div>{
+        postArray.length===0 ? "No Feeds":
+        postArray.map((post, index)=>(
+          <Posts key={index} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}/>
+        ))}
+      </div>
+        
+    )
+      
+    
+    //   <section className="features">
+    //   {!currentPage ? (
+    //     'loading'
+    //   ) : currentPage === 'tweets' ? (
+    //     <React.Fragment>
+    //       <div className="tweetForm__container ">
+    //         <div className="tweetForm__wrapper">
+    //           <div className="tweetForm__profile"></div>
+    //           <Counter total={tweets.length} />
+    //         </div>
+    //       </div>
+    //       <Tweets tweets={tweets} />
+    //     </React.Fragment>
+    //   ) : (
+    //     <React.Fragment>
+    //       <NotificationContainer notifications={Notice} />
+    //       <Notifications notifications={Notice} />
+    //     </React.Fragment>
+    //   )}
+    //   <Footer />
+    
   }
 
   

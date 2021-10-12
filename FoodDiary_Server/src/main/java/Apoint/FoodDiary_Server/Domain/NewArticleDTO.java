@@ -9,5 +9,5 @@ import java.util.List;
 @Setter
 public class NewArticleDTO {
 
-    private List<Article> article;
+    private List<ArticleDTO> articleDTO;
 }

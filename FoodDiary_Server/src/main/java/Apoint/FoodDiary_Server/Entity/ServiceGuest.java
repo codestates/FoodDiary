@@ -1,11 +1,17 @@
 package Apoint.FoodDiary_Server.Entity;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
 public class ServiceGuest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,27 +23,4 @@ public class ServiceGuest {
     @Column(nullable = false)
     private String code;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

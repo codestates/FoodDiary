@@ -20,13 +20,10 @@ public class Friends {
     private long id;
 
     @ManyToOne
-    @JoinColumn (name = "service_user_id")
+    @JoinColumn(name = "service_user_id" )
     private ServiceUser serviceUser;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @OneToMany(mappedBy = "friends")
-    private List<ArticleFriends> articleFriendsList = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "friend_user_id" )
+    private ServiceUser friendUser;
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ArticleUser {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -40,8 +40,7 @@ public class ArticleUser {
     @JoinColumn(name="ServiceUser_id")
     private ServiceUser serviceUser;
 
-    @OneToMany(mappedBy = "articleUser")
-    private List<ArticleFriends> articleFriendsList = new ArrayList<>();
+
 
 
 }
