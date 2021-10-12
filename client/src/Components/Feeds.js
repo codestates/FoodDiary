@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Feeds.css';
 import Posts from './Posts';
 // import InfiniteScroll from 'react-infinite-scroll-component';
@@ -6,6 +6,7 @@ import Posts from './Posts';
 import axios from 'axios';
 
 function Feeds () {
+  const [postArray, setPostArray] = useState([]);
   // const [posts, setPosts] = useState([]);
 
   // const [hasMore, sethasMore] = useState(true);
