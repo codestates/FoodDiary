@@ -7,18 +7,13 @@ import zIndex from '@mui/material/styles/zIndex';
 
 function Feeds () {
     const [postArray, setPostArray] = useState([]);
-    
-   
-
-    
-
+    const [userId, setUserId] = useState()
     const getPost = ()=> {
       axios.get('https://localhost:4000/articles')
           .then((data)=>{
             if(data.length===0){
               setPostArray([])
             }
-            console.log(data.data)
             setPostArray(data.data);
           })
           
@@ -58,7 +53,8 @@ function Feeds () {
       <div>{
         postArray.length===0 ? "No Feeds":
         postArray.map((post, index)=>(
-          <Posts key={index} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}/>
+          <Posts userId={userId} key={index} writerId={post.serviceUser.id} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}
+          />
         ))}
       </div>
         

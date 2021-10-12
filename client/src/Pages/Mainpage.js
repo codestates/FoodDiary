@@ -19,11 +19,14 @@ function Mainpage ({handleLogout,userInfo,isAuthenticated}) {
     }
     if (event.target.classList.contains('invitation')) {
       setGlobalState({ currentPage: 'invitation' });
+      
     }
   };
 
-  
-
+  const helpProps = () => {
+    const userId = userInfo.userId;
+    return userId;
+  }
   
     return (
       <div>
@@ -44,6 +47,5 @@ function Mainpage ({handleLogout,userInfo,isAuthenticated}) {
       </div>
     );
   }
-
 
 export default Mainpage

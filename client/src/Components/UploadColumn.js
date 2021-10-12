@@ -37,7 +37,6 @@ function Upload ({userInfo}) {
     });
     const handleInputValue = (key) => (e) => {
       setFeedInfo({ ...feedInfo, [key]: e.target.value });
-      // console.log(images[0].key)
     };
     
     const UploadFeed = ()=> {

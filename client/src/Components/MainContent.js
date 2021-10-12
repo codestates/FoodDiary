@@ -11,7 +11,7 @@ function MainContent ({userInfo}) {
   return (
     <div>       
       <FriendsBar userInfo={userInfo}/>
-      <Feeds/>
+      <Feeds userInfo={userInfo}/>
     </div>
   )
     

@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Pages/Login';
 import Mainpage from './Pages/Mainpage';
 import axios from 'axios';
+import { integerPropType } from '@mui/utils';
 
 
 export default function App() {
@@ -12,7 +13,8 @@ export default function App() {
   const [userInfo, setUserinfo] = useState({
     email:"",
     username:"",
-    birth:""
+    birth:"",
+    userId:""
   });
 
   const history = useHistory();
@@ -22,8 +24,8 @@ export default function App() {
       axios.get('https://localhost:4000/auth',{withCredentials:true})
       .then((res) => {
 
-        const {email, username, birth} = res.data.data.userInfo
-        setUserinfo({email:email, username:username, birth:birth})
+        const {email, username, birth, userId} = res.data.data.userInfo
+        setUserinfo({email:email, username:username, birth:birth, userId:userId})
         setIsLogin(true)
         history.push('/');
       })
@@ -41,7 +43,8 @@ export default function App() {
       setUserinfo({
         email:"",
         username:"",
-        birth:""
+        birth:"",
+        userId:""
       });
       setIsLogin(false);
       history.push('/');
