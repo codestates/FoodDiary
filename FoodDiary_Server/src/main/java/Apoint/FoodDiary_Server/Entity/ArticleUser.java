@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ArticleUser {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
@@ -35,8 +36,9 @@ public class ArticleUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(nullable = false)
-    private boolean admin;
+    @ManyToOne
+    @JoinColumn(name="ServiceUser_id")
+    private ServiceUser serviceUser;
 
     @OneToMany(mappedBy = "articleUser")
     private List<ArticleFriends> articleFriendsList = new ArrayList<>();

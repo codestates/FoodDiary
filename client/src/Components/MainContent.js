@@ -6,11 +6,11 @@ import Feeds from './Feeds';
 import Side from './Side'
 
 
-function MainContent () {
+function MainContent ({userInfo}) {
 
   return (
     <div>       
-      <FriendsBar/>
+      <FriendsBar userInfo={userInfo}/>
       <Feeds/>
     </div>
   )

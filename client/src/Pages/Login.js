@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 function Login({handleResponseSuccess}) {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: ''
@@ -22,19 +22,7 @@ const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
 };
 
-const handleLogin = () => {
-    // if (loginInfo.email === '' || loginInfo.password === '') {
 
-    // } else {
-      axios.post('https://localhost:4000/signin',{
-          "email":loginInfo.email,
-          "password":loginInfo.password
-      })
-      .then((res)=>{
-        console.log(res);
-        handleResponseSuccess();
-      })
-}
 
 const changeLogin=() => {
     if (isLogin){
@@ -60,11 +48,9 @@ const changeLogin=() => {
                   <div className="login_signin">
                     
                     {
-                      isLogin ? <div>
-                      <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
-                      <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
-                      <button className="login_btn" onClick={handleLogin}>Log In</button>
-                  </div> : <SignUp changeLogin={changeLogin}/>
+                      isLogin ? 
+                      <SignIn handleResponseSuccess={handleResponseSuccess} />
+                      : <SignUp changeLogin={changeLogin}/>
                     }
                     
                     <div className="login_separatordiv">
