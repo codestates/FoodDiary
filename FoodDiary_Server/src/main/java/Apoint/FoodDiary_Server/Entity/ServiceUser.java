@@ -45,11 +45,11 @@ public class ServiceUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @OneToMany(mappedBy ="serviceUser")
-    private List<Friends> friendsList = new ArrayList<>();
-
-    @OneToMany(mappedBy ="serviceUser")
-    private List<Article> articleList = new ArrayList<>();
+//    @OneToMany(mappedBy ="serviceUser")
+//    private List<Friends> friendsList = new ArrayList<>();
+//
+//    @OneToMany(mappedBy ="serviceUser")
+//    private List<Article> articleList = new ArrayList<>();
 
 
 

@@ -60,7 +60,7 @@ public class FriendRepository {
     }
 
     public List<Friends> ShowFriendArticles(long id){
-        List<Friends> friendsList = entityManager.createQuery("SELECT e FROM Friends e where e.service_user_id= '"+id+"'", Friends.class).getResultList();
+        List<Friends> friendsList = entityManager.createQuery("SELECT e FROM Friends e where e.serviceUser= '"+id+"'", Friends.class).getResultList();
         entityManager.flush();
         entityManager.close();
 
