@@ -5,8 +5,7 @@ import axios from 'axios';
 import { useDropzone } from "react-dropzone";
 import './UploadColumn.css';
 
-
-function Upload () {
+function Upload ({userInfo}) {
   const [files, setFiles] = useState([])
 
   const images = files.map((file) => (
@@ -33,22 +32,23 @@ function Upload () {
 
   const [feedInfo, setFeedInfo] = useState({
       title: '',
-      img: null,
+      // img: null,
       comment:''
     });
     const handleInputValue = (key) => (e) => {
       setFeedInfo({ ...feedInfo, [key]: e.target.value });
-      
+      // console.log(images[0].key)
     };
     
     const UploadFeed = ()=> {
-      if(feedInfo.title === "" || feedInfo.img === "" || feedInfo.comment === ""){
-        alert("작성 다 해주세요!")
-      } else{
+      // if(feedInfo.title === "" || feedInfo.img === "" || feedInfo.comment === ""){
+      //   alert("작성 다 해주세요!")
+      // } else{
         axios.post('https://localhost:4000/article',{   
             title:feedInfo.title,
-            image:feedInfo.img,
-            comment:feedInfo.comment
+            image:"aaa",
+            comment:feedInfo.comment,
+            id:45
           })
           .then(()=>{
               alert('Post Feed Success!')
@@ -56,7 +56,7 @@ function Upload () {
           .catch((e)=>{
               alert("Post Feed Failed")
           })
-      }
+      // }
     }
     
         return (

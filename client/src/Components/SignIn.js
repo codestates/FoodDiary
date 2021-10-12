@@ -6,7 +6,7 @@ import '../Pages/Login.css';
 function SignIn ({handleResponseSuccess}) {
     const [loginInfo, setLoginInfo] = useState({
         email: '',
-        password: ''
+        password: ""
     });
     
     const handleInputValue = (key) => (e) => {
@@ -18,10 +18,12 @@ function SignIn ({handleResponseSuccess}) {
 
         // } else {
           axios.post('https://localhost:4000/signin',{
-              "email":loginInfo.email,
-              "password":loginInfo.password
-          })
-          .then(()=>{
+              email:loginInfo.email,
+              password:loginInfo.password
+          },{ withCredentials: true })
+        //   .then(console.log("login success"))
+          .then((res)=>{
+              console.log(res)
             handleResponseSuccess();
           })
         // }
@@ -29,21 +31,9 @@ function SignIn ({handleResponseSuccess}) {
     
     return (
         <div>
-            <input 
-            className="login_text" 
-            type="text"
-            placeholder="Email" 
-            onChange={handleInputValue('email')}
-            />
-
-            <input 
-            className="login_text" 
-            type="password" 
-            placeholder="Password" 
-            onChange={handleInputValue('password')}
-            />
-
-            <button className="login_btn" onClick={handleLogin}>Log In</button>
+            <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
+            <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
+            <button className="login_btn" onClick={()=>{handleLogin()}}>Log In</button>
         </div>
     )
 }

@@ -1,8 +1,7 @@
 package Apoint.FoodDiary_Server.Repository;
 
-import Apoint.FoodDiary_Server.Domain.Article;
-import Apoint.FoodDiary_Server.Domain.LoginSignup;
-import Apoint.FoodDiary_Server.Entity.ArticleUser;
+import Apoint.FoodDiary_Server.Domain.ArticleDTO;
+import Apoint.FoodDiary_Server.Entity.Article;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import org.springframework.stereotype.Repository;
 
@@ -21,70 +20,67 @@ public class ArticleRepository {
         this.entityManager = entityManager;
     }
 
-    public List<ArticleUser> FindAll(){
-
-        return entityManager.createQuery("SELECT user FROM ArticleUser as user", ArticleUser.class).getResultList();
+    public List<Article> FindAll(){
+        return entityManager.createQuery("SELECT user FROM Article as user", Article.class).getResultList();
     }
 
-    public ArticleUser FindById(long id){
-        // DB service_user 테이블에 매개변수 id와 일치하는 유저 정보를 리턴합니다.
-        // TODO :
-        List<ArticleUser> list = entityManager
-                .createQuery("SELECT user FROM ArticleUser as user WHERE user.id='" + id + "'", ArticleUser.class)
+    //필요한가 다시 보기.
+    public Article FindById(long id){
+        List<Article> list = entityManager
+                .createQuery("SELECT user FROM Article as user WHERE user.id='" + id + "'", Article.class)
                 .getResultList();
         entityManager.close();
         return list.get(0);
     }
 
-    public List<ArticleUser> FindByTitle(String title){
-        // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
-        // TODO :
-        List<ArticleUser> list = entityManager
-                .createQuery("SELECT user FROM ArticleUser as user WHERE user.title='" + title + "'", ArticleUser.class)
-                .getResultList();
-        entityManager.close();
-        return list;
-    }
-
-    public void Create(Article article, long id){
-        // DB service_user 테이블에 매개변수 loginSignUp과 id에 데이터를 사용하여 유저 정보를 저장합니다.
-        // TODO :
+    public void Create(ArticleDTO articleDTO){
         Date now = new Date();
-        ArticleUser user = new ArticleUser();
-        user.setId(id);
-        user.setImage(article.getImage());
-        user.setTitle(article.getTitle());
-        user.setComment(article.getComment());
-        user.setCreatedAt(now);
-        user.setUpdatedAt(now);
-        user.setAdmin(false);
+        Article article = new Article();
 
-        entityManager.persist(user);
+        ServiceUser user = new ServiceUser();
+        user.setId(articleDTO.getUserId());
+
+        article.setTitle(articleDTO.getTitle());
+        article.setImage(articleDTO.getImage());
+        article.setComment(articleDTO.getComment());
+        article.setCreatedAt(now);
+        article.setUpdatedAt(now);
+        article.setServiceUser(user);
+
+        entityManager.persist(article);
         entityManager.flush();
         entityManager.close();
     }
 
-    public void Update(ArticleUser articleUser){
+//    public List<Article> FindById(String email){
+//        // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
+//        // TODO :
+//        List<Article> list = entityManager
+//                .createQuery("SELECT user FROM Article as user WHERE user.email='" + title + "'", ArticleUser.class)
+//                .getResultList();
+//        entityManager.close();
+//        return list;
 
-        ArticleUser user = FindById(articleUser.getId());
+    public void Update(Article article){
+
+        Article updateArticle = FindById(article.getId());
         Date now = new Date();
 
-        user.setImage(articleUser.getImage());
-        user.setTitle(articleUser.getTitle());
-        user.setComment(articleUser.getComment());
-        user.setCreatedAt(now);
-        user.setUpdatedAt(now);
-        user.setAdmin(false);
+        updateArticle.setImage(article.getImage());
+        updateArticle.setTitle(article.getTitle());
+        updateArticle.setComment(article.getComment());
+        updateArticle.setCreatedAt(now);
+        updateArticle.setUpdatedAt(now);
 
-        entityManager.persist(user);
+        entityManager.persist(updateArticle);
         entityManager.flush();
         entityManager.close();
     }
 
+    //게시물 삭제시, 게시물 아이디만 주면 된다!
     public void Delete(long id){
-
-        ArticleUser user = FindById(id);
-        entityManager.remove(user);
+        Article article = FindById(id);
+        entityManager.remove(article);
         entityManager.close();
     }
 

@@ -1,7 +1,8 @@
 package Apoint.FoodDiary_Server.Service;
 
-import Apoint.FoodDiary_Server.Domain.Article;
-import Apoint.FoodDiary_Server.Domain.ArticleResDTO;
+import Apoint.FoodDiary_Server.Domain.ArticleDTO;
+import Apoint.FoodDiary_Server.Entity.Friends;
+import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,12 @@ public class FriendService {
         this.friendRepository = friendRepository;
     }
 
-    public void SaveFriend(long id, List<Article> articles){
+    public void SaveFriend(long userId, long friendId){
 
-        friendRepository.SaveFriends(id, articles);
+        friendRepository.SaveFriends(userId, friendId);
     }
 
-    public List<ArticleResDTO> FindFriendList(long id) {
-        return friendRepository.FriendFindById(id);
+    public List<Friends> FindFriendList(long id) {
+        return friendRepository.ShowFriendArticles(id);
     }
 }

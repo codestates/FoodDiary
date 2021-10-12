@@ -7,14 +7,16 @@ import './Posts.css';
 
 
 function Posts (props) {
-  const {id, userName, title, postImage, text} = props
+  const {username, title, image, comment} = props
   
       return (
         <div className="post_container">
 
           <div className="post_header">
-            <Avatar className="post_avatar" src={postImage}/>
-            <div className="post_username">{userName}</div>
+
+            <Avatar className="post_avatar" src={image}/>
+            <div className="post_username">{username}</div>
+
             <div>
               <img onClick={()=>{ alert('Added to FriendsList'); }}
                style={{ "marginLeft": "1rem","marginTop":"18px", "width":"27px", "height":"27px", "cursor":"pointer" }} 
@@ -35,11 +37,11 @@ function Posts (props) {
           </div>
     
           <div>
-            <img src={postImage} alt="pictures" width="613px"/>
+            <img src={image} alt="pictures" width="613px"/>
           </div>
 
           <div className="post_description">
-              <p className="post_text">{text}</p>
+              <p className="post_text">{comment}</p>
           </div>
           
         </div>

@@ -1,9 +1,8 @@
 package Apoint.FoodDiary_Server.Controller;
 
-import Apoint.FoodDiary_Server.Domain.LoginSignin;
-import Apoint.FoodDiary_Server.Domain.LoginSignup;
-import Apoint.FoodDiary_Server.Domain.MailDto;
-import Apoint.FoodDiary_Server.Entity.ServiceGuest;
+import Apoint.FoodDiary_Server.Domain.SigninDTO;
+import Apoint.FoodDiary_Server.Domain.SingupDTO;
+import Apoint.FoodDiary_Server.Domain.MailDTO;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 
 @RestController
 @CrossOrigin(origins = "https://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
@@ -37,65 +35,47 @@ public class LoginController {
     }
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<?> UserSignUp(@RequestBody(required = true) LoginSignup loginSignup, HttpServletResponse response) {
+    public ResponseEntity<?> UserSignUp(@RequestBody(required = true) SingupDTO singupDTO, HttpServletResponse response) {
         // 들어온 회원가입 양식에 빈 값이 있는지 한번 더 체크
-        if (loginSignup.getEmail() == null || loginSignup.getBirth() == null || loginSignup.getPassword() == null ||
-                loginSignup.getUsername() == null || loginSignup.getCode() == null) {
+        if (singupDTO.getEmail() == null || singupDTO.getBirth() == null || singupDTO.getPassword() == null ||
+                singupDTO.getUsername() == null || singupDTO.getCode() == null) {
             return ResponseEntity.badRequest().body("insufficient parameters applied");
         }
 
-        if(loginService.CheckUserData(loginSignup.getEmail()) == false) {
+        if(loginService.CheckUserData(singupDTO.getEmail()) == false) {
             return ResponseEntity.badRequest().body("email exists");
         }
-        if(loginService.CheckGuestData(loginSignup.getEmail())){
+        if(loginService.CheckGuestData(singupDTO.getEmail())){
             return ResponseEntity.badRequest().body("You are not invited");
         }
-        if(loginService.CheckGuestCode(loginSignup.getEmail(),loginSignup.getCode())==false){
+        if(loginService.CheckGuestCode(singupDTO.getEmail(), singupDTO.getCode())==false){
             return ResponseEntity.badRequest().body("Wrong Code!");
         }
-        ServiceUser user = loginService.CreateUserData(loginSignup);
-        loginService.RemoveGuestAfterSignup(loginSignup.getEmail());
+        ServiceUser user = loginService.CreateUserData(singupDTO);
+        loginService.RemoveGuestAfterSignup(singupDTO.getEmail());
         Cookie cookie = new Cookie("jwt", loginService.CreateJWTToken(user));
         response.addCookie(cookie);
 
         return ResponseEntity.ok().body("회원가입이 완료되었습니다");
     }
-//    @PutMapping(value = "/mypage/profile/edit/{:id}")
-//    public ResponseEntity<?> UserUpdate(@RequestParam(required = true) String email, @RequestBody(required = true) LoginSignup loginSignup, HttpServletResponse response){
-//        if(loginSignup.getEmail() == null || loginSignup.getBirth() == null || loginSignup.getPassword() == null ||
-//                loginSignup.getUsername() == null){
-//            return ResponseEntity.badRequest().body("insufficient parameters upplied");
-//        }
-//
-//        ServiceUser user = loginService.FindUserEmail(email);
-//
-//        loginService.UpdateUserData(loginSignup);
-//
-//        if(user == null){
-//            return ResponseEntity.badRequest().body("not thing");
-//        }
-//        return ResponseEntity.ok().body(new HashMap<>(){{
-//            put("message","ok");
-//        }});
-//    }
 
     @PostMapping(value = "/signin")
-    public ResponseEntity<?> UserSignIn(@RequestBody(required = true) LoginSignin loginSignin, HttpServletResponse response){
+    public ResponseEntity<?> UserSignIn(@RequestBody(required = true) SigninDTO signinDTO, HttpServletResponse response){
         try{
             // DB에 저장 된 유저정보를 확인하여 토큰을 발행하는 메소드입니다.
             // loginSignin를 통해 전달 된 정보를 DB > service_user 테이블에 유저 정보와 비교 후 유효한 유저일 경우 토큰을 생성하여 쿠키를 통해 클라이언트에 전달해야합니다. (cookie key -> "jwt")
             // TODO :
-            ServiceUser user = loginService.FindUserData(loginSignin); // 유저 정보를 체크해야 합니다.
-            if(user == null){
-                return ResponseEntity.badRequest().body("invalid user");
-            }
+            ServiceUser user = loginService.FindUserEmail(signinDTO.getEmail()); // 유저 정보를 체크해야 합니다.
+//            if(user == null){
+//                return ResponseEntity.badRequest().body("invalid user");
+//            }
 
             Cookie cookie = new Cookie("jwt",
                     loginService.CreateJWTToken(user)); // 토큰을 생성하여 쿠키를 통해 클라이언트에 전달 되어야 합니다.
             response.addCookie(cookie);
             return ResponseEntity.ok().body(new HashMap<>(){{
                 put("message","ok");
-                put("data",user);
+
             }}); // { "message" : "ok"} 해당 JSON 데이터가 body에 전달되어야 합니다.
 
         }catch (Exception e){
@@ -122,7 +102,9 @@ public class LoginController {
         // 로그인 중인지 확인하는 메소드입니다.
         // 쿠키에 저장 된 토큰을 확인 하여 유저 데이터를 전달애햐합니다.
         // TODO :
+
         Cookie[] cookies = request.getCookies();
+
         String cookiesResult = "";
         try{
             for(Cookie cookie : cookies){
@@ -138,6 +120,7 @@ public class LoginController {
                 put("message","not authorized");
             }});// { "data" : null, "message" : "not authorized"} 해당 JSON 데이터가 body에 전달되어야 합니다.
         }
+//        System.out.println("cookiesResultaaaaaaaaaaaaaaaaa");
 
         Map<String, String> checkResult = loginService.CheckJWTToken(cookiesResult); // 토큰 유효성을 체크해야합니다.
 
@@ -172,7 +155,7 @@ public class LoginController {
 
 
     @PostMapping("/email")
-    public ResponseEntity<?> SendEmail(@RequestBody(required = true) MailDto mailDto, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<?> SendEmail(@RequestBody(required = true) MailDTO mailDto, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
 
         //이미 있는 회원인지 확인
         if(loginService.CheckUserData(mailDto.getAddress()) == true && loginService.CheckGuestData(mailDto.getAddress())==true){
@@ -211,18 +194,5 @@ public class LoginController {
         }
 
     }
-
-
-//    @GetMapping("/mainpage")
-//    public ResponseEntity<?> GetAllPhotos(HttpServletResponse response){
-//
-//
-//    }
-
-//    @PostMapping(value = "/email")
-//    private int sendEmail(HttpServletRequest request, String userEmail){
-//        HttpSession session = request.getSession();
-//        loginService.mailSend(session, userEmail);
-//    }
 
 }

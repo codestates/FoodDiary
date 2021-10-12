@@ -1,10 +1,7 @@
 package Apoint.FoodDiary_Server.Service;
 
-import Apoint.FoodDiary_Server.Domain.Article;
-import Apoint.FoodDiary_Server.Domain.LoginSignin;
-import Apoint.FoodDiary_Server.Domain.LoginSignup;
-import Apoint.FoodDiary_Server.Entity.ArticleUser;
-import Apoint.FoodDiary_Server.Entity.ServiceUser;
+import Apoint.FoodDiary_Server.Domain.ArticleDTO;
+import Apoint.FoodDiary_Server.Entity.Article;
 import Apoint.FoodDiary_Server.Repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,33 +19,29 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public ArticleUser CreateService(Article article){
-        for(ArticleUser i : articleRepository.FindAll()){
-            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
-                    i.getImage().equals(article.getImage())){
+    public Article CreateService(ArticleDTO articleDTO){
+        //제목 이미지 코멘트 셋다 같은 글은 null을 반환한다.
+        for(Article i : articleRepository.FindAll()){
+            if(i.getTitle().equals(articleDTO.getTitle()) && i.getComment().equals(articleDTO.getComment()) &&
+                    i.getImage().equals(articleDTO.getImage())){
                 return null;
             }
         }
-        GET_ID++;
-        articleRepository.Create(article, GET_ID);
-        return articleRepository.FindById(GET_ID);
+        articleRepository.Create(articleDTO);
+        //추가된 게시물 하나가 리턴된다.
+        return null;
     }
 
-    public List<ArticleUser> FindAllService(){
+    public List<Article> FindAllService(){
         return articleRepository.FindAll();
     }
 
-    public ArticleUser FindByIdService(long id){
+    public Article FindByIdService(long id){
 
         return articleRepository.FindById(id);
     }
 
-    public List<ArticleUser> FindByTitleService(String title){
-
-        return articleRepository.FindByTitle(title);
-    }
-
-    public void UpdateUserService (ArticleUser article){
+    public void UpdateUserService (Article article){
 
          articleRepository.Update(article);
     }
