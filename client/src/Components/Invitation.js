@@ -50,7 +50,10 @@ function Invitation () {
             </div>
 
             <div>
-              <img className="upload_btn" onClick={sendInviteEmail} src={uploadIcon} alt="pictures" width="615px"/>
+              <img className="upload_btn" 
+              onClick={sendInviteEmail} 
+              src={uploadIcon} alt="pictures" 
+              width="615px"/>
             </div>
           
           </div>
