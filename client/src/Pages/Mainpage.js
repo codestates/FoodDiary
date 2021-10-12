@@ -7,7 +7,7 @@ import UploadColumn from '../Components/UploadColumn'
 import Invitation from '../Components/Invitation'
 import Grid from '@mui/material/Grid';
 
-function Mainpage ({handleLogout}) {
+function Mainpage ({handleLogout,userInfo}) {
   
   const [globalState, setGlobalState] = useState({
     currentPage:'home'
@@ -33,7 +33,7 @@ function Mainpage ({handleLogout}) {
             </Grid>
 
             <Grid item xs={2}>
-              <Side globalState={globalState}/>
+              <Side globalState={globalState} userInfo={userInfo}/>
             </Grid>
 
             <Grid item xs={2}></Grid>

@@ -9,7 +9,7 @@ import profile from '../images/pp1.png';
 import './NavigationBar.css';
 
 
-function NavigationBar({handleLogout, handleIconClick}) {
+function NavigationBar({handleLogout, handleIconClick,userInfo}) {
 
   const showFriendsFeed = ()=> {
     console.log("show friends feed")

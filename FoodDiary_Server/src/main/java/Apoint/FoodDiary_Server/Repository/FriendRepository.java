@@ -38,9 +38,9 @@ public class FriendRepository {
 
         for(Article articleDTO : article){
             ArticleFriends articleFriends = new ArticleFriends();
-            ArticleUser articleUser = entityManager.find(ArticleUser.class, articleDTO.getArticleId());
+//            ArticleUser articleUser = entityManager.find(ArticleUser.class, articleDTO.getArticleId());
             articleFriends.setFriends(friends);
-            articleFriends.setArticleUser(articleUser);
+//            articleFriends.setArticleUser(articleUser);
             entityManager.persist(articleFriends);
 
         }

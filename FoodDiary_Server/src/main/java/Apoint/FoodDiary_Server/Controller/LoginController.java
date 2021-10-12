@@ -85,10 +85,10 @@ public class LoginController {
             // DB에 저장 된 유저정보를 확인하여 토큰을 발행하는 메소드입니다.
             // loginSignin를 통해 전달 된 정보를 DB > service_user 테이블에 유저 정보와 비교 후 유효한 유저일 경우 토큰을 생성하여 쿠키를 통해 클라이언트에 전달해야합니다. (cookie key -> "jwt")
             // TODO :
-            ServiceUser user = loginService.FindUserData(loginSignin); // 유저 정보를 체크해야 합니다.
-            if(user == null){
-                return ResponseEntity.badRequest().body("invalid user");
-            }
+            ServiceUser user = loginService.FindUserEmail(loginSignin.getEmail()); // 유저 정보를 체크해야 합니다.
+//            if(user == null){
+//                return ResponseEntity.badRequest().body("invalid user");
+//            }
 
             Cookie cookie = new Cookie("jwt",
                     loginService.CreateJWTToken(user)); // 토큰을 생성하여 쿠키를 통해 클라이언트에 전달 되어야 합니다.
@@ -122,7 +122,9 @@ public class LoginController {
         // 로그인 중인지 확인하는 메소드입니다.
         // 쿠키에 저장 된 토큰을 확인 하여 유저 데이터를 전달애햐합니다.
         // TODO :
+
         Cookie[] cookies = request.getCookies();
+
         String cookiesResult = "";
         try{
             for(Cookie cookie : cookies){
@@ -138,6 +140,7 @@ public class LoginController {
                 put("message","not authorized");
             }});// { "data" : null, "message" : "not authorized"} 해당 JSON 데이터가 body에 전달되어야 합니다.
         }
+//        System.out.println("cookiesResultaaaaaaaaaaaaaaaaa");
 
         Map<String, String> checkResult = loginService.CheckJWTToken(cookiesResult); // 토큰 유효성을 체크해야합니다.
 

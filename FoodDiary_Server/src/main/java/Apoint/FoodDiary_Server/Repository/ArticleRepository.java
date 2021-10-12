@@ -50,16 +50,18 @@ public class ArticleRepository {
         // DB service_user 테이블에 매개변수 loginSignUp과 id에 데이터를 사용하여 유저 정보를 저장합니다.
         // TODO :
         Date now = new Date();
-        ArticleUser user = new ArticleUser();
+        ArticleUser feed = new ArticleUser();
+        ServiceUser user = new ServiceUser();
         user.setId(id);
-        user.setImage(article.getImage());
-        user.setTitle(article.getTitle());
-        user.setComment(article.getComment());
-        user.setCreatedAt(now);
-        user.setUpdatedAt(now);
-        user.setAdmin(false);
 
-        entityManager.persist(user);
+        feed.setTitle(article.getTitle());
+        feed.setImage(article.getImage());
+        feed.setComment(article.getComment());
+        feed.setCreatedAt(now);
+        feed.setUpdatedAt(now);
+        feed.setServiceUser(user);
+
+        entityManager.persist(feed);
         entityManager.flush();
         entityManager.close();
     }
@@ -74,7 +76,6 @@ public class ArticleRepository {
         user.setComment(articleUser.getComment());
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
-        user.setAdmin(false);
 
         entityManager.persist(user);
         entityManager.flush();

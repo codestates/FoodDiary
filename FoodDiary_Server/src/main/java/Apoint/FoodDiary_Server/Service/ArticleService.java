@@ -22,16 +22,18 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public ArticleUser CreateService(Article article){
-        for(ArticleUser i : articleRepository.FindAll()){
-            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
-                    i.getImage().equals(article.getImage())){
-                return null;
-            }
-        }
-        GET_ID++;
-        articleRepository.Create(article, GET_ID);
-        return articleRepository.FindById(GET_ID);
+    public ArticleUser CreateService(Article article, long id){
+        //게시물 만드는걸 필터해줄 필요가 있을까?
+        // 제목이 겹치거나 코멘트가 겹칠 수도 있으니까...
+//        for(ArticleUser i : articleRepository.FindAll()){
+//            if(i.getTitle().equals(article.getTitle()) && i.getComment().equals(article.getComment()) &&
+//                    i.getImage().equals(article.getImage())){
+//                return null;
+//            }
+//        }
+
+        articleRepository.Create(article, id);
+        return null;
     }
 
     public List<ArticleUser> FindAllService(){
