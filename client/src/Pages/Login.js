@@ -48,19 +48,9 @@ const changeLogin=() => {
                   <div className="login_signin">
                     
                     {
-<<<<<<< HEAD
-                      isLogin ?
-                      
-                    <div>
-                      <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
-                      <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
-                      <button className="login_btn" onClick={handleLogin}>Log In</button>
-                  </div> : <SignUp changeLogin={changeLogin}/>
-=======
                       isLogin ? 
                       <SignIn handleResponseSuccess={handleResponseSuccess} />
                       : <SignUp changeLogin={changeLogin}/>
->>>>>>> 89b940da81a6ecabdffe86c890bbdf9654dd63a1
                     }
                     
                     <div className="login_separatordiv">
