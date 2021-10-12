@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 function Login({handleResponseSuccess}) {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: ''
@@ -60,7 +60,9 @@ const changeLogin=() => {
                   <div className="login_signin">
                     
                     {
-                      isLogin ? <div>
+                      isLogin ?
+                      
+                    <div>
                       <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
                       <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
                       <button className="login_btn" onClick={handleLogin}>Log In</button>
@@ -87,10 +89,10 @@ const changeLogin=() => {
                     {
                       isLogin ? 
                       <div className="login_signup">
-                        Have an Invitation? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
+                        Have an Invitation? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6", "cursor":"pointer" }}> Sign Up</span>
                       </div> :
                       <div className="login_signin">
-                        Have an Account? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
+                        Have an Account? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6", "cursor":"pointer" }}> Sign In</span>
                       </div>
                     }
 

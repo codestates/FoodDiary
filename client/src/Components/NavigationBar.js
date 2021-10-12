@@ -7,6 +7,7 @@ import invitation from '../images/find.svg';
 import Avatar from '@mui/material/Avatar';
 import profile from '../images/pp1.png';
 import './NavigationBar.css';
+import Sticky from 'react-sticky-el';
 
 
 function NavigationBar({handleLogout, handleIconClick}) {
@@ -29,7 +30,7 @@ function NavigationBar({handleLogout, handleIconClick}) {
   return (
      <div style={{"position": "sticky", "top": "0","z-index":"1"}}>
         <div className="navibar_contents">
-        <Grid container >
+        <Grid container style={{"height":"30px"}}>
               <Grid item xs={2}></Grid>
               <Grid item xs={3}>
                   <a href="https://localhost:3000/mainpage"><img className="navibar_logo" onclick src={foodDiary_logo} alt="food diary logo" width="168px"/></a>
@@ -38,11 +39,15 @@ function NavigationBar({handleLogout, handleIconClick}) {
                   <input  className="navibar_searchBar" text="text" placeholder="Search"/>
               </Grid>
 
-              <Grid item xs={3} style={{"display":"flex"}}>
-                  <img className="navibar_img home" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
-                  <img className="navibar_img friends" onClick={showFriendsFeed} src={friends} alt="friends icon" width="25px"/>
-                  <img className="navibar_img invitation" onClick={handleIconClick} src={invitation} alt="invitation icon" width="25px"/>
-                  <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
+              <Grid item xs={3} style={{"display":"flex", "height":"55px"}}>
+                  <img className="navibar_img home" onClick={handleIconClick}
+                   src={home} alt="home icon" width="25px"/>
+                  <img className="navibar_img friends" onClick={showFriendsFeed} 
+                  src={friends} alt="friends icon" width="25px"/>
+                  <img className="navibar_img invitation" onClick={handleIconClick} 
+                  src={invitation} alt="invitation icon" width="25px"/>
+                  <Avatar className="navibar_img" onClick={checkLogout} 
+                  src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
               </Grid>
               <Grid item xs={1}></Grid>
         </Grid>

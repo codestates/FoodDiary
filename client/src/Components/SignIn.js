@@ -29,8 +29,20 @@ function SignIn ({handleResponseSuccess}) {
     
     return (
         <div>
-            <input className="login_text" type="text" placeholder="Email" onChange={handleInputValue('email')}/>
-            <input className="login_text" type="password" placeholder="Password" onChange={handleInputValue('password')}/>
+            <input 
+            className="login_text" 
+            type="text"
+            placeholder="Email" 
+            onChange={handleInputValue('email')}
+            />
+
+            <input 
+            className="login_text" 
+            type="password" 
+            placeholder="Password" 
+            onChange={handleInputValue('password')}
+            />
+
             <button className="login_btn" onClick={handleLogin}>Log In</button>
         </div>
     )
