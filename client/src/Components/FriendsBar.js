@@ -17,6 +17,9 @@ function FriendsBar() {
         axios.get('https://localhost:4000/articles')
           .then((data)=>{
             //   console.log(res)
+            if(data.length===0){
+                setStatusList([])
+            }
             setStatusList(data);
           })
         // let data = [
@@ -67,13 +70,13 @@ function FriendsBar() {
               {(statusList.length===0) ? 
                         <div>You have no friends yet...</div>
                         // 이 부분 css 해주세요!
-                     :
-                  statusList.map((item) => (
-                    <div className="fbar">
-                        <Avatar className="fbar_profile" src={friendimg}/>
-                        <div className="fbar_friendname">{item.username}</div>
-                    </div>
-                  ))
+                     : <div></div>
+                //   statusList.map((item) => (
+                //     <div className="fbar">
+                //         <Avatar className="fbar_profile" src={friendimg}/>
+                //         <div className="fbar_friendname">{item.username}</div>
+                //     </div>
+                //   ))
               }
             
           </div>

@@ -1,14 +1,13 @@
 package Apoint.FoodDiary_Server.Repository;
 
 
-import Apoint.FoodDiary_Server.Domain.Article;
-import Apoint.FoodDiary_Server.Domain.ArticleResDTO;
-import Apoint.FoodDiary_Server.Entity.ArticleFriends;
-import Apoint.FoodDiary_Server.Entity.ArticleUser;
+import Apoint.FoodDiary_Server.Domain.ArticleDTO;
+import Apoint.FoodDiary_Server.Domain.FriendDTO;
 import Apoint.FoodDiary_Server.Entity.Friends;
 import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -27,48 +26,44 @@ public class FriendRepository {
         this.entityManager = entityManager;
     }
 
-    public void SaveFriends(long id, List<Article> article) {
+    public void SaveFriends(long userId, long friendId) {
 
-        ServiceUser serviceUser = entityManager.find(ServiceUser.class, id);
+        ServiceUser me = new ServiceUser();
+        me.setId(userId);
+
+        ServiceUser you = new ServiceUser();
+        you.setId(friendId);
 
         Friends friends = new Friends();
-        friends.setServiceUser(serviceUser);
-        friends.setCreatedAt(new Date());
+        friends.setServiceUser(me);
+        friends.setFriendUser(you);
+
+
+//        ServiceUser serviceUser = entityManager.find(ServiceUser.class, id);
+//
+//        Friends friends = new Friends();
+//        friends.setServiceUser(serviceUser);
+//        friends.setCreatedAt(new Date());
+//        entityManager.persist(friends);
+//
+//        for(ArticleDTO articleDTO : article){
+//            ArticleFriends articleFriends = new ArticleFriends();
+////            ArticleUser articleUser = entityManager.find(ArticleUser.class, articleDTO.getArticleId());
+//            articleFriends.setFriends(friends);
+////            articleFriends.setArticleUser(articleUser);
+//            entityManager.persist(articleFriends);
+//
+//        }
         entityManager.persist(friends);
-
-        for(Article articleDTO : article){
-            ArticleFriends articleFriends = new ArticleFriends();
-//            ArticleUser articleUser = entityManager.find(ArticleUser.class, articleDTO.getArticleId());
-            articleFriends.setFriends(friends);
-//            articleFriends.setArticleUser(articleUser);
-            entityManager.persist(articleFriends);
-
-        }
-
         entityManager.flush();
         entityManager.close();
     }
 
-    public List<ArticleResDTO> FriendFindById(long id){
-        List<ArticleResDTO> list = new ArrayList<>();
-
-        List<Friends> friendsList = entityManager.find(ServiceUser.class,id).getFriendsList();
-
-        for(Friends friends : friendsList){
-            List<ArticleFriends> articleFriendsList = entityManager.find(Friends.class, friends.getId()).getArticleFriendsList();
-
-            for(ArticleFriends articleFriends : articleFriendsList){
-                ArticleResDTO articleResDTO = new ArticleResDTO();
-                articleResDTO.setId(articleFriends.getId());
-                articleResDTO.setTitle(articleFriends.getArticleUser().getTitle());
-                articleResDTO.setImage(articleFriends.getArticleUser().getImage());
-                articleResDTO.setComment(articleFriends.getArticleUser().getComment());
-                list.add(articleResDTO);
-            }
-        }
+    public List<Friends> ShowFriendArticles(long id){
+        List<Friends> friendsList = entityManager.createQuery("SELECT e FROM Friends e where e.service_user_id= '"+id+"'", Friends.class).getResultList();
         entityManager.flush();
         entityManager.close();
 
-        return list;
+        return friendsList;
     }
 }

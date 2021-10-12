@@ -1,3 +1,8 @@
 --INSERT Into service_feed (id, comment, created_at, image, title, updated_at, user_id) VALUES (id, "aaa", now(), "image.jpg", "aaa", now(), 500);
 INSERT INTO service_user (id,username, password, email, birth,user_image, admin, created_at, updated_at) VALUES (45,"김형준", "0000", "HJ@codestates.com", "960415",'aaa', true, now(), now());
+INSERT INTO service_user (id,username, password, email, birth,user_image, admin, created_at, updated_at) VALUES (46,"박민준", "0000", "MJ@codestates.com", "960415",'aaa', true, now(), now());
+INSERT INTO service_user (id,username, password, email, birth,user_image, admin, created_at, updated_at) VALUES (47,"한승우", "0000", "SW@codestates.com", "960415",'aaa', true, now(), now());
+INSERT INTO service_user (id,username, password, email, birth,user_image, admin, created_at, updated_at) VALUES (48,"김재현", "0000", "JH@codestates.com", "960415",'aaa', true, now(), now());
 --INSERT INTO friends(created_at,service_user_id) VALUES (now(),1);
+INSERT INTO article (id,title, image, comment, created_at, updated_at, service_user_id) VALUES (100,"게시글 제목", "https://media.vlpt.us/images/ryanromaris/post/419c908f-254a-41a0-8269-89202cd7c0fb/Food_Diary_Logo.png", "프로젝트 잘되게 해주세요", now(), now(), 45);
+INSERT INTO article (id,title, image, comment, created_at, updated_at, service_user_id) VALUES (101,"게시글 제목2", "https://media.vlpt.us/images/ryanromaris/post/419c908f-254a-41a0-8269-89202cd7c0fb/Food_Diary_Logo.png", "프로젝트 잘되게 해주세요2", now(), now(), 45);

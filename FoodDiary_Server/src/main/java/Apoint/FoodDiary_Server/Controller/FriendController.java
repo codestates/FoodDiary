@@ -1,12 +1,15 @@
 package Apoint.FoodDiary_Server.Controller;
 
-import Apoint.FoodDiary_Server.Domain.ArticleResDTO;
+import Apoint.FoodDiary_Server.Domain.FriendDTO;
 import Apoint.FoodDiary_Server.Domain.NewArticleDTO;
+import Apoint.FoodDiary_Server.Entity.Friends;
+import Apoint.FoodDiary_Server.Entity.ServiceUser;
 import Apoint.FoodDiary_Server.Service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -20,15 +23,16 @@ public class FriendController {
         this.friendService = friendService;
     }
 
-    @PostMapping(value = "/friends/{id}")
-    public ResponseEntity<?> AddFriends (@PathVariable(value = "id") Long id ,
-                                         @RequestBody NewArticleDTO friendDTO) {
+    @PostMapping(value = "/friends")
+    public ResponseEntity<?> AddFriends (@RequestBody FriendDTO friendDTO) {
 
-        if(friendDTO.getArticle().size() == 0){
+        Long userId = friendDTO.getUserId();
+        Long friendId = friendDTO.getFriendId();
+        if(userId == null || friendId == null){
             return ResponseEntity.badRequest().body("Bad request.");
         }
         try{
-         friendService.SaveFriend(id, friendDTO.getArticle());
+         friendService.SaveFriend(userId, friendId);
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Not found");
         }
@@ -38,13 +42,13 @@ public class FriendController {
     @GetMapping(value = "/friends/{id}")
     public ResponseEntity<?> FindFriendList(@PathVariable(value = "id") Long id){
 
-        List<ArticleResDTO> articleResDTOList = friendService.FindFriendList(id);
+        List<Friends> friendList = friendService.FindFriendList(id);
 
-        if(articleResDTOList == null){
+        if(friendList == null){
             return ResponseEntity.badRequest().body("Not found");
         }
 
-        return ResponseEntity.ok().body(articleResDTOList);
+        return ResponseEntity.ok().body(friendList);
     }
 
 }

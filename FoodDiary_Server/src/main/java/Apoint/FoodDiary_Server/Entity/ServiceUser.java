@@ -48,6 +48,11 @@ public class ServiceUser {
     @OneToMany(mappedBy ="serviceUser")
     private List<Friends> friendsList = new ArrayList<>();
 
+    @OneToMany(mappedBy ="serviceUser")
+    private List<Article> articleList = new ArrayList<>();
+
+
+
 //    @OneToMany(mappedBy ="serviceUser")
 //    private List<ArticleUser> articleUsers = new ArrayList<>();
 
