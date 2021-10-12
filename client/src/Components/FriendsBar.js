@@ -67,17 +67,17 @@ function FriendsBar() {
       return (
         <div>
           <div className="fbar_container">
-              {(statusList.length===0) ? 
-                        <div>You have no friends yet...</div>
-                        // 이 부분 css 해주세요!
-                     : <div></div>
-                //   statusList.map((item) => (
+              {/* {(statusList.length===0) ?  */}
+                        <div style={{"width":"614px", "height":"120px", "textAlign":"center", "padding":"40px"}}>You have no friends yet...</div>
+                        {/* // 이 부분 css 해주세요! */}
+                     {/* : <div></div> */}
+                {/* //   statusList.map((item) => (
                 //     <div className="fbar">
                 //         <Avatar className="fbar_profile" src={friendimg}/>
                 //         <div className="fbar_friendname">{item.username}</div>
                 //     </div>
                 //   ))
-              }
+              } */}
             
           </div>
         </div>
