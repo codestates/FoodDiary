@@ -14,7 +14,7 @@ function NavigationBar({handleLogout, handleIconClick,userInfo}) {
   const history = useHistory();
   useEffect(()=>{
     if(userInfo.username===""){
-      alert("Join Us!")
+      // alert("Join Us!")
       history.push("https://localhost:4000/login")
     }
   },[])
@@ -51,7 +51,7 @@ function NavigationBar({handleLogout, handleIconClick,userInfo}) {
                   <img className="navibar_img home" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
                   <img className="navibar_img friends" onClick={showFriendsFeed} src={friends} alt="friends icon" width="25px"/>
                   <img className="navibar_img invitation" onClick={handleIconClick} src={invitation} alt="invitation icon" width="25px"/>
-                  <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
+                  <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px", "cursor":"pointer"}}></Avatar>
                   <p style={{"color":"blue", "marginTop":"14px", "marginLeft":"2px"}}>Hi, {userInfo.username}</p> 
 
               </Grid>
