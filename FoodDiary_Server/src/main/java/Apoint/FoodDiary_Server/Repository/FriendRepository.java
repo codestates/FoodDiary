@@ -38,29 +38,13 @@ public class FriendRepository {
         friends.setServiceUser(me);
         friends.setFriendUser(you);
 
-
-//        ServiceUser serviceUser = entityManager.find(ServiceUser.class, id);
-//
-//        Friends friends = new Friends();
-//        friends.setServiceUser(serviceUser);
-//        friends.setCreatedAt(new Date());
-//        entityManager.persist(friends);
-//
-//        for(ArticleDTO articleDTO : article){
-//            ArticleFriends articleFriends = new ArticleFriends();
-////            ArticleUser articleUser = entityManager.find(ArticleUser.class, articleDTO.getArticleId());
-//            articleFriends.setFriends(friends);
-////            articleFriends.setArticleUser(articleUser);
-//            entityManager.persist(articleFriends);
-//
-//        }
         entityManager.persist(friends);
         entityManager.flush();
         entityManager.close();
     }
 
-    public List<Friends> ShowFriendArticles(long id){
-        List<Friends> friendsList = entityManager.createQuery("SELECT e FROM Friends e where e.service_user_id= '"+id+"'", Friends.class).getResultList();
+    public List<Friends> ShowFriendArticles(long id) {
+        List<Friends> friendsList = entityManager.createQuery("SELECT e FROM Friends e where e.serviceUser= '" + id + "'", Friends.class).getResultList();
         entityManager.flush();
         entityManager.close();
 
