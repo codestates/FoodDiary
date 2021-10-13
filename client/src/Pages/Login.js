@@ -63,10 +63,10 @@ function Login({handleResponseSuccess}) {
                     {
                       isLogin ? 
                       <div className="login_signup">
-                        Have an Invitation? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign Up</span>
+                        Have an Invitation? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6", "cursor":"pointer" }}> Sign Up</span>
                       </div> :
                       <div className="login_signin">
-                        Have an Account? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6" }}> Sign In</span>
+                        Have an Account? <span onClick={changeLogin} style={{"fontWeight":"bold", "color":"#0395F6", "cursor":"pointer" }}> Sign In</span>
                       </div>
                     }
 

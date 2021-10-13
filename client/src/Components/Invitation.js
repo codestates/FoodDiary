@@ -40,17 +40,20 @@ function Invitation () {
             <div className="upload_container">
             
             <div className="upload_title">
-              <h3>Invite Your Friends!</h3>
+              <h3 style={{"marginTop":"9px"}}>Invite Your Friends!</h3>
             </div>
   
             <div className="upload_description" >
-                <input type="email" onChange={handleInputValue('email')}></input>
+                <input style={{"width":"20rem", "marginTop":"9px"}}  placeholder="Enter your Friend's Email" type="email" onChange={handleInputValue('email')}></input>
                 <br/>
-                <input type="name" onChange={handleInputValue('guestName')}></input>
+                <input style={{"width":"20rem"}} placeholder="Enter your Friend's Name" type="name" onChange={handleInputValue('guestName')}></input>
             </div>
 
             <div>
-              <img className="upload_btn" onClick={sendInviteEmail} src={uploadIcon} alt="pictures" width="615px"/>
+              <img className="upload_btn" 
+              onClick={sendInviteEmail} 
+              src={uploadIcon} alt="pictures" 
+              width="615px"/>
             </div>
           
           </div>

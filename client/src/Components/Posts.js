@@ -23,15 +23,24 @@ function Posts ({writerId, username, title, image, comment, userId }) {
         <div className="post_container">
 
           <div className="post_header">
-            <Avatar className="post_image" src={image}/>
+
+            <Avatar className="post_avatar" src={image}/>
             <div className="post_username">{username}</div>
+
             <div>
-              <img style={{ "marginLeft": "1rem","marginTop":"18px" }} className="post_like" onClick={addFriend} src={love} alt="love icon"/> 
+
+              <img onClick={()=>{ alert('Added to FriendsList'); }}
+               style={{ "marginLeft": "1rem","marginTop":"18px", "width":"27px", "height":"27px", "cursor":"pointer" }} 
+               className="post_like" 
+               src={love} 
+               alt="love icon"/> 
             </div>
-            <div>
-            <img onClick={()=>{ alert('Edit Post'); }} style={{"height":"27px", "marginLeft": "8rem","marginTop":"18px", "cursor":"pointer", "width":"30px"}} src={editicon} alt="editing icon" />
-              
-            </div>
+          </div>
+
+          <div>
+            <img onClick={()=>{ alert('Edit Post'); }} 
+            style={{"height":"27px", "marginLeft": "36rem","marginTop":"-28px", "cursor":"pointer", "width":"30px"}} 
+            src={editicon} alt="editing icon" />
           </div>
 
           <div className="post_title">
@@ -39,11 +48,10 @@ function Posts ({writerId, username, title, image, comment, userId }) {
           </div>
     
           <div>
-            <img src={image} alt="pictures" width="615px"/>
+            <img src={image} alt="pictures" width="613px"/>
           </div>
 
           <div className="post_description">
-              <h3 style={{"marginLeft": "20px"}}>Photo Description</h3>
               <p className="post_text">{comment}</p>
           </div>
           
