@@ -11,15 +11,12 @@ function Posts (props) {
   const {loginId, friendId, username, title, image, comment} = props
 
   const addFriend = () => {
-    console.log(loginId,friendId)
     axios.post('https://localhost:4000/friends',
     {
       userId:loginId,
       friendId:friendId
     },{withCredentials:true})
-    .then((res) => {
-      console.log(res)
-      console.log("w")
+    .then(() => {
       window.location.reload()
     });
   };

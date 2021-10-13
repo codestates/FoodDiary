@@ -5,36 +5,87 @@ import Posts from './Posts';
 // import Loader from './Loader';
 import axios from 'axios';
 
-function Feeds ({loginId}) {
+function Feeds ({ loginId, globalState}) {
 
   const [postArray, setPostArray] = useState([]);
+  const [friend_articles,setFriend_articles] = useState([])
 
   const getPost = ()=> {
-    axios.get('https://localhost:4000/articles')
+    axios.get('https://localhost:4000/article')
         .then((data)=>{
           if(data.length===0){
             setPostArray([])
           }
-          console.log(data.data)
           setPostArray(data.data);
         })
   }
+
+
+  const ShowFriendFeeds = ()=> {
+      console.log("show friends feed")
+      console.log("loginId in Feeds:",loginId)
+  
+    // Todo:
+    let url = 'https://localhost:4000/friends/'+loginId
+    let friendList = [];
+    let feedlist=[]
+
+        axios.get(url,{withCredentials:true})
+          .then((res)=>{
+            for(let i of res.data){
+              friendList.push(i.friendUser.id)
+            }
+          })
+          .then(()=>{
+            for(let friend of friendList){
+              let get_url = 'https://localhost:4000/article?id='+friend
+              axios.get(get_url,{withCredentials:true})
+              .then((res)=>{
+                console.log("friend articles are:",res.data)
+                feedlist.push(...res.data)
+                setFriend_articles(feedlist)
+                console.log("feedlist:",feedlist)
+              })
+            }
+          
+            
+          })
+    // 하트버튼(친구 피드 보기)를 눌렀을때 게시글들이 친구들이 올린걸로만 보이게 필터해주는 api와 연결해주세요!
+    
+  }
+
   
   useEffect(()=>{
     getPost();
-  },[])
+    ShowFriendFeeds()
+  },[loginId])
     
-    return (
+  return (<div>{!globalState.currentPage ? (
+    'loading'
+  ) : globalState.currentPage === 'home' ? (
+    <React.Fragment>
       <div>{
         postArray.length===0 ? "No Feeds":
         postArray.map((post, index)=>(
           <Posts key={index} loginId={loginId} friendId={post.serviceUser.id} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}/>
         ))}
       </div>
-        
-    )
+    </React.Fragment>
+  ) : globalState.currentPage === 'friends' ? (
+    <React.Fragment>
+      <div>{
+      friend_articles.length===0 ? "No Feeds":
+      friend_articles.map((post, index)=>(
+        <Posts key={index} loginId={loginId} friendId={post.serviceUser.id} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}/>
+      ))}
+    </div>
+    </React.Fragment>
+  ) : <div></div>
+}</div>)
     
   }
+
+  
 
   
   

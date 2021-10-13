@@ -20,7 +20,15 @@ function Mainpage ({handleLogout,userInfo,loginId}) {
       setGlobalState({ currentPage: 'invitation' });
       console.log(loginId)
     }
+    if (event.target.classList.contains('friends')) {
+      setGlobalState({ currentPage: 'friends' });
+      Getter()
+    }
   };
+
+  const Getter = ()=>{
+    
+  }
 
     return (
       <div>
@@ -29,7 +37,7 @@ function Mainpage ({handleLogout,userInfo,loginId}) {
           <Grid item xs={2}></Grid>
 
             <Grid item xs={6}>
-              <MainContent/>
+              <MainContent Getter={Getter} globalState={globalState} />
             </Grid>
 
             <Grid item xs={2}>

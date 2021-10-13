@@ -5,7 +5,7 @@ import Feeds from './Feeds';
 import axios from 'axios';
 
 
-function MainContent () {
+function MainContent ({Getter, globalState}) {
 
   const [loginId, setLoginId]=useState(null);
 
@@ -14,17 +14,20 @@ function MainContent () {
     .then((res) => {
       setLoginId(res.data.data.userInfo.userId)
     })
+    console.log("loginId In main content:",loginId)
   }
   
   useEffect(()=>{
     checkAuth();
   })
+
+  
   
 
   return (
     <div>       
       <FriendsBar loginId={loginId} />
-      <Feeds loginId={loginId} />
+      <Feeds Getter={Getter} loginId={loginId} globalState={globalState} />
     </div>
   )
     

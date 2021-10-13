@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
-function NavigationBar({handleLogout, handleIconClick,userInfo}) {
+function NavigationBar({handleLogout, handleIconClick,userInfo,GetFriendArticle}) {
   const history = useHistory();
   useEffect(()=>{
     if(userInfo.username===""){
@@ -19,22 +19,37 @@ function NavigationBar({handleLogout, handleIconClick,userInfo}) {
       history.push("https://localhost:4000/login")
     }
   },[])
+
   const showFriendsFeed = ()=> {
     console.log("show friends feed")
     // Todo:
     let url = 'https://localhost:4000/friends/'+userInfo.userId
     let friendList = [];
+    const friend_articles = [];
+
         axios.get(url,{withCredentials:true})
           .then((res)=>{
             for(let i of res.data){
               friendList.push(i.friendUser.id)
             }
             console.log(friendList)
-            //friend List가 [47,48] 형식으로 get요청을 보내면 게시글 찾아서 리턴해준다.
-            
+          })
+          .then(()=>{
+            for(let friend of friendList){
+              let get_url = 'https://localhost:4000/article?id='+friend
+              axios.get(get_url,{withCredentials:true})
+              .then((res)=>{
+                console.log(res.data[0].id)
+                friend_articles.push(res.data[0])
+              })
+            }
+            console.log("articles:",friend_articles)
+            GetFriendArticle(friend_articles)
           })
     // 하트버튼(친구 피드 보기)를 눌렀을때 게시글들이 친구들이 올린걸로만 보이게 필터해주는 api와 연결해주세요!
   }
+
+  
 
   const checkLogout = () => {
     if (window.confirm('Are you sure you want Logout?')) {
@@ -61,7 +76,7 @@ function NavigationBar({handleLogout, handleIconClick,userInfo}) {
 
               <Grid item xs={3} style={{"display":"flex", "height":"55px"}}>
                   <img className="navibar_img home" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
-                  <img className="navibar_img friends" onClick={showFriendsFeed} src={friends} alt="friends icon" width="25px"/>
+                  <img className="navibar_img friends" onClick={handleIconClick} src={friends} alt="friends icon" width="25px"/>
                   <img className="navibar_img invitation" onClick={handleIconClick} src={invitation} alt="invitation icon" width="25px"/>
                   <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
                   <p style={{"color":"blue", "marginTop":"14px", "marginLeft":"2px"}}>Hi, {userInfo.username}</p> 
