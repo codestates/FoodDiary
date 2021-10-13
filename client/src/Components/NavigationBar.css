@@ -6,11 +6,13 @@
 }
 
 .navibar_logo {
-    margin-top: -72px;
+    margin-top: 2px;
+    cursor: pointer;
 }
 
 .navibar_img {
     margin: 15px 10px;
+    cursor: pointer;
 }
 
 .navibar_searchBar {
