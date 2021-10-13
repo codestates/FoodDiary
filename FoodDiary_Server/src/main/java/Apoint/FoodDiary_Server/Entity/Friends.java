@@ -20,10 +20,10 @@ public class Friends {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "service_user_id" )
+    @JoinColumn(name = "service_user_id")
     private ServiceUser serviceUser;
 
     @ManyToOne
-    @JoinColumn(name = "friend_user_id" )
+    @JoinColumn(name = "friend_user_id")
     private ServiceUser friendUser;
 }

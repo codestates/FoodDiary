@@ -15,9 +15,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Article {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
+    private long userId;
 
     @Column(nullable = false)
     private String title;
@@ -37,10 +41,8 @@ public class Article {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name="ServiceUser_id")
+    @JoinColumn(name = "ServiceUser_id")
     private ServiceUser serviceUser;
-
-
 
 
 }

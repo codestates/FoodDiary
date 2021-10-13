@@ -19,22 +19,22 @@ public class LoginRepository {
     private final EntityManager entityManager;
 
     @Autowired
-    public LoginRepository(EntityManager entityManager){
+    public LoginRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public List<ServiceUser> FindByEmail(String email){
+    public List<ServiceUser> FindByEmail(String email) {
         // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
-        return entityManager.createQuery("SELECT e FROM ServiceUser e where e.email = '"+email+"'", ServiceUser.class).getResultList();
+        return entityManager.createQuery("SELECT e FROM ServiceUser e where e.email = '" + email + "'", ServiceUser.class).getResultList();
     }
 
-    public List<ServiceUser> FindUserList(){
+    public List<ServiceUser> FindUserList() {
         // DB service_user 테이블에 모든 유저 정보를 리턴합니다.
         // TODO :
         return entityManager.createQuery("SELECT e FROM ServiceUser e", ServiceUser.class).getResultList();
     }
 
-    public void CreateServiceUser(SingupDTO singupDTO){
+    public void CreateServiceUser(SingupDTO singupDTO) {
         Date now = new Date();
         ServiceUser user = new ServiceUser();
         user.setEmail(singupDTO.getEmail());
@@ -52,7 +52,7 @@ public class LoginRepository {
 
     }
 
-    public void CreateServiceGuest(String email, String code){
+    public void CreateServiceGuest(String email, String code) {
         ServiceGuest guest = new ServiceGuest();
         guest.setEmail(email);
         guest.setCode(code);
@@ -61,17 +61,17 @@ public class LoginRepository {
         entityManager.close();
     }
 
-    public List<ServiceGuest> FindGuestList(){
+    public List<ServiceGuest> FindGuestList() {
         return entityManager.createQuery("SELECT e FROM ServiceGuest e", ServiceGuest.class).getResultList();
     }
 
-    public List<ServiceGuest> FindGuestByEmail(String email){
+    public List<ServiceGuest> FindGuestByEmail(String email) {
         // DB service_user 테이블에 매개변수 email과 일치하는 유저 정보를 리턴합니다.
         // 초대장 보낼때, 작성한 이메일이 이미 ServiceUser에 있는지 확인하기위해.
-        return entityManager.createQuery("SELECT e FROM ServiceGuest e where e.email = '"+email+"'", ServiceGuest.class).getResultList();
+        return entityManager.createQuery("SELECT e FROM ServiceGuest e where e.email = '" + email + "'", ServiceGuest.class).getResultList();
     }
 
-    public void DeleteGuestAfterSignup(String email){
+    public void DeleteGuestAfterSignup(String email) {
         ServiceGuest removeGuest = FindGuestByEmail(email).get(0);
         entityManager.remove(removeGuest);
     }

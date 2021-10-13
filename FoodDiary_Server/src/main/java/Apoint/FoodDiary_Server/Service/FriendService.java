@@ -19,7 +19,7 @@ public class FriendService {
         this.friendRepository = friendRepository;
     }
 
-    public void SaveFriend(long userId, long friendId){
+    public void SaveFriend(long userId, long friendId) {
 
         friendRepository.SaveFriends(userId, friendId);
     }

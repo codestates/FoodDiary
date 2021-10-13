@@ -4,8 +4,10 @@ import Apoint.FoodDiary_Server.Domain.ArticleDTO;
 import Apoint.FoodDiary_Server.Entity.Article;
 import Apoint.FoodDiary_Server.Service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,27 +21,34 @@ public class ArticleController {
     }
 
     @PostMapping(value = "/article")
-    public Article CreateArticle(@RequestBody ArticleDTO articleDTO) {
-        return articleService.CreateService(articleDTO);
-    }
+    public ResponseEntity<?> CreateArticle(@RequestBody ArticleDTO articleDTO) {
+        articleService.CreateService(articleDTO);
 
-    @GetMapping(value = "/articles")
-    public List<Article> FindAllArticle() {
-        return articleService.FindAllService();
+        return ResponseEntity.ok().body(new HashMap<>(){{
+            put("message", "create success!");
+        }});
     }
 
     @GetMapping(value = "/article")
-    public Article FindByIdArticle(@RequestParam(required = true) Long id) {
-            return articleService.FindByIdService(id);
+    public ResponseEntity<?> FindByIdArticle(@RequestParam(required = false) Long id) {
+        if (id != null) {
+            List<Article> article = articleService.FindByIdService(id);
+            return ResponseEntity.ok().body(article);
+        } else {
+            List<Article> articles = articleService.FindAllService();
+            return ResponseEntity.ok().body(articles);
+        }
     }
 
     @PutMapping(value = "/article")
-    public void updateArticle(@RequestBody Article article) {
-         articleService.UpdateUserService(article);
+    public ResponseEntity<?> updateArticle(@RequestBody Article article) {
+        articleService.UpdateUserService(article);
+        return ResponseEntity.ok().body("update success");
     }
 
     @DeleteMapping(value = "/article/{id}")
-    public void deleteArticle(@PathVariable Long id) {
+    public ResponseEntity<?> deleteArticle(@PathVariable Long id) {
         articleService.DeleteService(id);
+        return ResponseEntity.ok().body("delete success");
     }
 }
