@@ -29,6 +29,7 @@ public class ArticleController {
         }});
     }
 
+    //조회
     @GetMapping(value = "/article")
     public ResponseEntity<?> FindByIdArticle(@RequestParam(required = false) Long id) {
         if (id != null) {
