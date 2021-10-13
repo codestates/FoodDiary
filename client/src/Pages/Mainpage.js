@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import NavigationBar from '../Components/NavigationBar';
 import MainContent from '../Components/MainContent';
 import Side from '../Components/Side';
@@ -6,10 +6,9 @@ import './Mainpage.css';
 
 import Grid from '@mui/material/Grid';
 
-function Mainpage ({handleLogout,userInfo,loginId}) {
-  
+function Mainpage({ handleLogout, userInfo, loginId }) {
   const [globalState, setGlobalState] = useState({
-    currentPage:'home'
+    currentPage: 'home',
   });
 
   const handleIconClick = (event) => {
@@ -18,29 +17,37 @@ function Mainpage ({handleLogout,userInfo,loginId}) {
     }
     if (event.target.classList.contains('invitation')) {
       setGlobalState({ currentPage: 'invitation' });
-      console.log(loginId)
+      console.log(loginId);
+    }
+    if (event.target.classList.contains('friends')) {
+      setGlobalState({ currentPage: 'friends' });
     }
   };
 
-    return (
-      <div>
-        <NavigationBar userInfo={userInfo} handleIconClick={handleIconClick} handleLogout={()=>{handleLogout()}} />
-        <Grid container>
-          <Grid item xs={2}></Grid>
+  return (
+    <div>
+      <NavigationBar
+        userInfo={userInfo}
+        handleIconClick={handleIconClick}
+        handleLogout={() => {
+          handleLogout();
+        }}
+      />
+      <Grid container>
+        <Grid item xs={2}></Grid>
 
-            <Grid item xs={6}>
-              <MainContent/>
-            </Grid>
-
-            <Grid item xs={2}>
-              <Side globalState={globalState} userInfo={userInfo}/>
-            </Grid>
-
-            <Grid item xs={2}></Grid>
+        <Grid item xs={6}>
+          <MainContent globalState={globalState} />
         </Grid>
-      </div>
-    );
-  }
 
+        <Grid item xs={2}>
+          <Side globalState={globalState} userInfo={userInfo} />
+        </Grid>
 
-export default Mainpage
+        <Grid item xs={2}></Grid>
+      </Grid>
+    </div>
+  );
+}
+
+export default Mainpage;

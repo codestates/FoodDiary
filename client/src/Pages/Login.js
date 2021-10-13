@@ -8,19 +8,10 @@ import apoint from '../images/Apoint_Logo.png';
 import './Login.css';
 import SignIn from '../Components/SignIn';
 import SignUp from '../Components/Signup';
-import axios from 'axios';
 
 
 function Login({handleResponseSuccess}) {
   const [isLogin, setIsLogin] = useState(true);
-  const [loginInfo, setLoginInfo] = useState({
-    email: '',
-    password: ''
-});
-
-const handleInputValue = (key) => (e) => {
-    setLoginInfo({ ...loginInfo, [key]: e.target.value });
-};
 
 const changeLogin=() => {
     if (isLogin){

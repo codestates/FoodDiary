@@ -1,47 +1,43 @@
 .post_container {
-    width: 615px;
-    border: 1px solid #dbdbdb;
-    background-color: white;
-    margin-top: 31px;
+  width: 615px;
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  margin-top: 31px;
 }
 
 .post_header {
-    height: 30px;
-    display: flex;
-    width: 557px;
+  height: 30px;
+  display: flex;
+  width: 557px;
 }
 
 .post_username {
-    font-weight: bold;
-    margin-top: 20px;
-    
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .post_avatar {
-    min-width: 30px;
-    min-height: 30px;
-    margin: 10px;
+  min-width: 30px;
+  min-height: 30px;
+  margin: 10px;
 }
 
 .post_title {
-    font-weight: bold;
-    text-align: center;
-    height: 45px;
-    border-bottom: 1px solid #dbdbdb;
-    margin-top: 3px;
+  font-weight: bold;
+  text-align: center;
+  height: 45px;
+  border-bottom: 1px solid #dbdbdb;
+  margin-top: 3px;
 }
 
 .post_description {
-    border-top: 1px solid #dbdbdb;
-    margin-bottom: -18px;
+  border-top: 1px solid #dbdbdb;
+  margin-bottom: -18px;
 }
 
 .post_text {
-    overflow-y: scroll;
-    padding: 15px; 
-    border: 1px solid #dbdbdb;
-    height: 120px;
+  overflow-y: scroll;
+  padding: 15px;
+  border: 1px solid #dbdbdb;
+  height: 120px;
 }
-
-
-
