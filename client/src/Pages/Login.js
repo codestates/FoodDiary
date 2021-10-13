@@ -22,8 +22,6 @@ const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
 };
 
-
-
 const changeLogin=() => {
     if (isLogin){
       setIsLogin(false);

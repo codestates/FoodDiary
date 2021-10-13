@@ -1,13 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import NavigationBar from '../Components/NavigationBar';
 import MainContent from '../Components/MainContent';
 import Side from '../Components/Side';
 import './Mainpage.css';
-import UploadColumn from '../Components/UploadColumn'
-import Invitation from '../Components/Invitation'
+
 import Grid from '@mui/material/Grid';
 
-function Mainpage ({handleLogout,userInfo,isAuthenticated}) {
+function Mainpage ({handleLogout,userInfo,loginId}) {
   
   const [globalState, setGlobalState] = useState({
     currentPage:'home'
@@ -19,15 +18,13 @@ function Mainpage ({handleLogout,userInfo,isAuthenticated}) {
     }
     if (event.target.classList.contains('invitation')) {
       setGlobalState({ currentPage: 'invitation' });
+      console.log(loginId)
     }
   };
 
-  
-
-  
     return (
       <div>
-        <NavigationBar userInfo={userInfo} isAuthenticated={isAuthenticated} handleIconClick={handleIconClick} handleLogout={()=>{handleLogout()}} />
+        <NavigationBar userInfo={userInfo} handleIconClick={handleIconClick} handleLogout={()=>{handleLogout()}} />
         <Grid container>
           <Grid item xs={2}></Grid>
 
