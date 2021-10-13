@@ -1,0 +1,26 @@
+.navibar_contents {
+    height: 54px;
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+    position:relative;
+}
+
+.navibar_logo {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.navibar_img {
+    margin: 15px 10px;
+    cursor: pointer;
+}
+
+.navibar_searchBar {
+    height: 30px;
+    width: 215px;
+    margin-top: 10px;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+    background-color: #fafafa;
+    
+}

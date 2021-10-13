@@ -1,0 +1,124 @@
+body {
+    background-color: #fafafa;
+}
+
+.login_main {
+    display: flex;
+    margin-top: 10px;
+    margin-left: -65px;
+}
+
+.login_logo {
+    width: 190px;
+    
+}
+
+.login_rightcomp {
+    text-align: center;
+    margin-top: 25px;
+    padding-bottom: 25px;
+    width: 350px;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+}
+
+.login_signin {
+    margin-top: -15px;
+}
+
+.login_text {
+    width: 258px;
+    margin: 5px;
+    height: 36px;
+    border: 1px solid #dbdbdb;
+    background-color: #fafafa;
+    padding-left: 10px;
+    border-radius: 7px;
+}
+
+.login_btn {
+    margin-top: 5px;
+    width: 270px;
+    height: 36px;
+    border-radius: 7px;
+    font-weight: bold;
+    border: 1px solid #0395f6;
+    background-color: #0395f6;
+    color: white;
+}
+
+.login_separatordiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.login_dividor {
+    width: 90px;
+    height: 0px;
+    margin-top: 10px;
+    border: 1px solid #DBDBDB;
+
+}
+
+.login_fd {
+    margin: 0px 25px;
+    font-weight: bold;
+    color: #8E8E8E;
+}
+
+.login_apointdiv {
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+}
+
+.login_apoint {
+    color: #395185;
+    font-weight: bold;
+    margin-top: 25.5px;
+    margin-left: -20px;
+    font-size: 16px;
+
+}
+
+.login_forgotPass {
+    color: #395185;
+    font-size: 13px;
+    line-height: 14px;
+    margin-top: -10px;
+    text-align: center;
+}
+
+.login_invitation {
+    height: 56px;
+    width: 350px;
+    border: 1px solid #dbdbdb;
+    margin-top: 15px;
+    background-color: white;
+    text-align: center;
+}
+
+.login_signin {
+    margin-top: 20px;
+}
+
+.login_signup {
+    margin-top: 20px;
+}
+
+.login_download {
+    height: 105px;
+    width: 350px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login_options {
+    margin-top: 5px;
+}
+
+.login_downloadimg {
+    margin: 5px;
+}
+                      
