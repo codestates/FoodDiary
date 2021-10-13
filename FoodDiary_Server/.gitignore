@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 localhost.p12
-test.txt
+src/main/resources/ignore.txt
 
 ### STS ###
 .apt_generated
