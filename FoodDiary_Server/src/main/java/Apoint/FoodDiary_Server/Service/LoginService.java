@@ -20,25 +20,25 @@ public class LoginService {
     private final LoginRepository loginRepository;
 
     @Autowired
-    public LoginService(LoginRepository loginRepository){
+    public LoginService(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
-    public ServiceUser FindUserData(SigninDTO signinDTO){
+    public ServiceUser FindUserData(SigninDTO signinDTO) {
         List<ServiceUser> user = loginRepository.FindByEmail(signinDTO.getEmail());
-        for (ServiceUser i : user){
-            if (i.getPassword().equals(signinDTO.getPassword())){
+        for (ServiceUser i : user) {
+            if (i.getPassword().equals(signinDTO.getPassword())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ServiceUser FindUserEmail(String email){
+    public ServiceUser FindUserEmail(String email) {
         return loginRepository.FindByEmail(email).get(0);
     }
 
-    public String CreateJWTToken(ServiceUser user){
+    public String CreateJWTToken(ServiceUser user) {
         // 매개변수 user를 통해 전달 되는 데이터를 사용하여 토큰을 생성 후 값을 리턴합니다.
         // 토큰에는 "email", "username"이 담겨야합니다.
         // 토큰에 유효시간은 24시간입니다.
@@ -49,48 +49,48 @@ public class LoginService {
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setIssuer("fresh")
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime()+ Duration.ofDays(1).toMillis()))
-                .claim("email",user.getEmail())
-                .claim("username",user.getUsername())
+                .setExpiration(new Date(now.getTime() + Duration.ofDays(1).toMillis()))
+                .claim("email", user.getEmail())
+                .claim("username", user.getUsername())
                 .signWith(SignatureAlgorithm.HS256, SIGN_KEY)
                 .compact();
     }
 
-    public Map<String, String> CheckJWTToken(String key){
+    public Map<String, String> CheckJWTToken(String key) {
         // 매개변수 key를 통해 전달 되는 토큰 값에 유효성을 체크하여 결과를 리턴합니다.
-        try{
+        try {
             Claims claims = Jwts.parser().setSigningKey(SIGN_KEY)
                     .parseClaimsJws(key)
                     .getBody();
 
-            String userEmail =(String) claims.get("email");
-            return new HashMap<>(){
+            String userEmail = (String) claims.get("email");
+            return new HashMap<>() {
                 {
-                    put("email",userEmail);
-                    put("message","ok");
+                    put("email", userEmail);
+                    put("message", "ok");
                 }
             };
 
-        }catch(ExpiredJwtException e){
-            return new HashMap<>(){
+        } catch (ExpiredJwtException e) {
+            return new HashMap<>() {
                 {
-                    put("email",null);
-                    put("message","토큰 시간이 만료 되었습니다.");
+                    put("email", null);
+                    put("message", "토큰 시간이 만료 되었습니다.");
                 }
             };
-        }catch(JwtException e){
-            return new HashMap<>(){
+        } catch (JwtException e) {
+            return new HashMap<>() {
                 {
-                    put("email",null);
-                    put("message","토큰이 유효하지 않습니다.");
+                    put("email", null);
+                    put("message", "토큰이 유효하지 않습니다.");
                 }
             };
         }
     }
 
-    public ServiceUser CreateUserData(SingupDTO singupDTO){
-        for(ServiceUser i : loginRepository.FindUserList()){
-            if(i.getEmail().equals(singupDTO.getEmail())){
+    public ServiceUser CreateUserData(SingupDTO singupDTO) {
+        for (ServiceUser i : loginRepository.FindUserList()) {
+            if (i.getEmail().equals(singupDTO.getEmail())) {
                 return null;
             }
         }
@@ -107,7 +107,8 @@ public class LoginService {
             return false;
         }
     }
-    public String CreateInvitationCode (){
+
+    public String CreateInvitationCode() {
         StringBuffer invitationCode = new StringBuffer();
         Random rnd = new Random();
         for (int i = 0; i < 10; i++) {
@@ -130,22 +131,22 @@ public class LoginService {
         return invitationCode.toString();
     }
 
-    public ServiceGuest CreateGuestData (String email, String code){
-        for(ServiceGuest i : loginRepository.FindGuestList()){
-            if(i.getEmail().equals(email)){
+    public ServiceGuest CreateGuestData(String email, String code) {
+        for (ServiceGuest i : loginRepository.FindGuestList()) {
+            if (i.getEmail().equals(email)) {
                 return null;
             }
         }
-        loginRepository.CreateServiceGuest(email,code);
+        loginRepository.CreateServiceGuest(email, code);
         return loginRepository.FindGuestByEmail(email).get(0);
     }
 
 
-    public Boolean CheckGuestCode (String email, String code){
-        for(ServiceGuest i : loginRepository.FindGuestByEmail(email)){
-            if(i.getCode().equals(code)){
+    public Boolean CheckGuestCode(String email, String code) {
+        for (ServiceGuest i : loginRepository.FindGuestByEmail(email)) {
+            if (i.getCode().equals(code)) {
                 return true;
-            } else{
+            } else {
                 return false;
             }
         }
@@ -153,17 +154,17 @@ public class LoginService {
     }
 
 
-    public Boolean CheckUserData(String email){
+    public Boolean CheckUserData(String email) {
         // 초대장 보내는 이메일로 이미 가입이 되어 있는지 확인
         List<ServiceUser> user = loginRepository.FindByEmail(email);
-        if(user.isEmpty()){
+        if (user.isEmpty()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void RemoveGuestAfterSignup(String email){
+    public void RemoveGuestAfterSignup(String email) {
         loginRepository.DeleteGuestAfterSignup(email);
     }
 }

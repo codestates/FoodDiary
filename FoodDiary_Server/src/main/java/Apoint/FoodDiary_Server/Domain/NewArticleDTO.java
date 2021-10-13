@@ -10,4 +10,5 @@ import java.util.List;
 public class NewArticleDTO {
 
     private List<ArticleDTO> articleDTO;
+
 }

@@ -24,27 +24,27 @@ public class FriendController {
     }
 
     @PostMapping(value = "/friends")
-    public ResponseEntity<?> AddFriends (@RequestBody FriendDTO friendDTO) {
+    public ResponseEntity<?> AddFriends(@RequestBody FriendDTO friendDTO) {
 
         Long userId = friendDTO.getUserId();
         Long friendId = friendDTO.getFriendId();
-        if(userId == null || friendId == null){
+        if (userId == null || friendId == null) {
             return ResponseEntity.badRequest().body("Bad request.");
         }
-        try{
-         friendService.SaveFriend(userId, friendId);
-        }catch (Exception e){
+        try {
+            friendService.SaveFriend(userId, friendId);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Not found");
         }
         return ResponseEntity.ok().body("Friend Add Success!");
     }
 
     @GetMapping(value = "/friends/{id}")
-    public ResponseEntity<?> FindFriendList(@PathVariable(value = "id") Long id){
+    public ResponseEntity<?> FindFriendList(@PathVariable(value = "id") Long id) {
 
         List<Friends> friendList = friendService.FindFriendList(id);
 
-        if(friendList == null){
+        if (friendList == null) {
             return ResponseEntity.badRequest().body("Not found");
         }
 
