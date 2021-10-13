@@ -1,0 +1,39 @@
+.upload_container {
+  width: 450px;
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  margin-top: 55px;
+  max-height: 693px;
+}
+
+.hide {
+  display: none;
+}
+
+.upload_title {
+  font-weight: bold;
+  border-bottom: 1px solid #dbdbdb;
+  text-align: center;
+}
+
+.upload_description {
+  margin-top: -1px;
+  border-top: 1px solid #dbdbdb;
+  text-align: center;
+}
+
+.upload_text {
+  padding: 15px;
+  border: 1px solid #dbdbdb;
+  height: 110px;
+  width: 420px;
+}
+
+.upload_btn {
+  width: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  margin-top: -12px;
+}

@@ -15,18 +15,14 @@ export default function App() {
     birth:"",
     userId:0
   });
-  let loginId;
+  
 
   const history = useHistory();
   const isAuthenticated = () => {
-    
-    console.log("authenticated")
       axios.get('https://localhost:4000/auth',{withCredentials:true})
       .then((res) => {
-
         const {email, username, birth, userId} = res.data.data.userInfo
         setUserinfo({email:email, username:username, birth:birth, userId:userId})
-        loginId=userId;
         setIsLogin(true)
         history.push('/');
       })
@@ -64,7 +60,7 @@ export default function App() {
           />
         </Route>
         <Route exact path='/mainpage'>
-          <Mainpage handleLogout={handleLogout} userInfo={userInfo} loginId={loginId} isAuthenticated={isAuthenticated}/>
+          <Mainpage handleLogout={handleLogout} userInfo={userInfo} loginId={userInfo.userId}/>
         </Route>
         <Route path='/'>
           {isLogin ? <Redirect to='/mainpage' /> : <Redirect to='/login' />}
