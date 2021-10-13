@@ -8,19 +8,31 @@ import Avatar from '@mui/material/Avatar';
 import profile from '../images/pp1.png';
 import './NavigationBar.css';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 function NavigationBar({handleLogout, handleIconClick,userInfo}) {
   const history = useHistory();
   useEffect(()=>{
     if(userInfo.username===""){
-      // alert("Join Us!")
+      alert("Join Us!")
       history.push("https://localhost:4000/login")
     }
   },[])
   const showFriendsFeed = ()=> {
     console.log("show friends feed")
     // Todo:
+    let url = 'https://localhost:4000/friends/'+userInfo.userId
+    let friendList = [];
+        axios.get(url,{withCredentials:true})
+          .then((res)=>{
+            for(let i of res.data){
+              friendList.push(i.friendUser.id)
+            }
+            console.log(friendList)
+            //friend List가 [47,48] 형식으로 get요청을 보내면 게시글 찾아서 리턴해준다.
+            
+          })
     // 하트버튼(친구 피드 보기)를 눌렀을때 게시글들이 친구들이 올린걸로만 보이게 필터해주는 api와 연결해주세요!
   }
 
@@ -51,7 +63,7 @@ function NavigationBar({handleLogout, handleIconClick,userInfo}) {
                   <img className="navibar_img home" onClick={handleIconClick} src={home} alt="home icon" width="25px"/>
                   <img className="navibar_img friends" onClick={showFriendsFeed} src={friends} alt="friends icon" width="25px"/>
                   <img className="navibar_img invitation" onClick={handleIconClick} src={invitation} alt="invitation icon" width="25px"/>
-                  <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px", "cursor":"pointer"}}></Avatar>
+                  <Avatar className="navibar_img" onClick={checkLogout} src={profile} style={{"maxWidth":"25px", "maxHeight":"25px"}}></Avatar>
                   <p style={{"color":"blue", "marginTop":"14px", "marginLeft":"2px"}}>Hi, {userInfo.username}</p> 
 
               </Grid>

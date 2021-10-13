@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useDropzone } from "react-dropzone";
 import './UploadColumn.css';
 
-function Upload ({userInfo}) {
+function Upload () {
   const [files, setFiles] = useState([])
 
   const images = files.map((file) => (
@@ -16,7 +16,6 @@ function Upload ({userInfo}) {
     </div>
   ))
 
-  //{~~,~~}
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -37,6 +36,7 @@ function Upload ({userInfo}) {
     });
     const handleInputValue = (key) => (e) => {
       setFeedInfo({ ...feedInfo, [key]: e.target.value });
+      // console.log(images[0].key)
     };
     
     const UploadFeed = ()=> {

@@ -3,81 +3,45 @@ import Avatar from '@mui/material/Avatar';
 import friendimg from '../images/pp1.png';
 import './FriendsBar.css';
 import axios from 'axios';
+import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 
 
-function FriendsBar() {
-
+function FriendsBar({loginId}) {
+  
     const [statusList, setStatusList] = useState([]);
     
+    const getData = ()=>{
+      if(loginId !== null){
+        let url = 'https://localhost:4000/friends/'+loginId
+        axios.get(url,{withCredentials:true})
+          .then((res)=>{
+            console.log(res)
+            setStatusList(res.data);
+          })
+          
+      } else{
+        console.log("no")
+      }
+    }
     useEffect(() => {
       getData()
-    },[]);
-    
-    const getData = ()=>{
-        axios.get('https://localhost:4000/articles')
-          .then((data)=>{
-            //   console.log(res)
-            if(data.length===0){
-                setStatusList([])
-            }
-            setStatusList(data);
-          })
-        // let data = [
-            // {
-            //     "username":"kim-coding",
-            //     "imageURL":"../images/pp1.png"
-            // },
-            // {
-            //     "username":"han-hacker",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"minjun-backend",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"codes-states",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"새벽-5시ㄷr",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"이건 미친 짓",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"많이 졸리다",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"살려줘요",
-            //     "imageURL":"../images/pp1.png" 
-            // },
-            // {
-            //     "username":"hj-master",
-            //     "imageURL":"../images/pp1.png" 
-            // }
-        // ]
-        // setStatusList(data);
-    }
+    },[loginId]);
 
     
       return (
         <div>
           <div className="fbar_container">
-              {/* {(statusList.length===0) ?  */}
+              {(statusList.length===0) ? 
                         <div style={{"width":"614px", "height":"120px", "textAlign":"center", "padding":"40px"}}>You have no friends yet...</div>
-                        {/* // 이 부분 css 해주세요! */}
-                     {/* : <div></div> */}
-                {/* //   statusList.map((item) => (
-                //     <div className="fbar">
-                //         <Avatar className="fbar_profile" src={friendimg}/>
-                //         <div className="fbar_friendname">{item.username}</div>
-                //     </div>
-                //   ))
-              } */}
+                        /* // 이 부분 css 해주세요! */
+                     : 
+                   statusList.map((item) => (
+                     <div className="fbar">
+                         <Avatar className="fbar_profile" src={friendimg}/>
+                         <div className="fbar_friendname">{item.friendUser.username}</div>
+                     </div>
+                   ))
+              }
             
           </div>
         </div>

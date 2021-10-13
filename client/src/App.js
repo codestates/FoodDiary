@@ -4,7 +4,6 @@ import './App.css';
 import Login from './Pages/Login';
 import Mainpage from './Pages/Mainpage';
 import axios from 'axios';
-import { integerPropType } from '@mui/utils';
 
 
 export default function App() {
@@ -14,8 +13,9 @@ export default function App() {
     email:"",
     username:"",
     birth:"",
-    userId:""
+    userId:0
   });
+  let loginId;
 
   const history = useHistory();
   const isAuthenticated = () => {
@@ -26,14 +26,12 @@ export default function App() {
 
         const {email, username, birth, userId} = res.data.data.userInfo
         setUserinfo({email:email, username:username, birth:birth, userId:userId})
+        loginId=userId;
         setIsLogin(true)
         history.push('/');
       })
     }
    
-  
-    
-  
   const handleResponseSuccess = () => {
     isAuthenticated();
   };
@@ -44,7 +42,7 @@ export default function App() {
         email:"",
         username:"",
         birth:"",
-        userId:""
+        userId:0
       });
       setIsLogin(false);
       history.push('/');
@@ -65,11 +63,8 @@ export default function App() {
             handleResponseSuccess={handleResponseSuccess}
           />
         </Route>
-        {/* <Route exact path='/signup'>
-          <Signup/>
-        </Route> */}
         <Route exact path='/mainpage'>
-          <Mainpage handleLogout={handleLogout} userInfo={userInfo} isAuthenticated={isAuthenticated}/>
+          <Mainpage handleLogout={handleLogout} userInfo={userInfo} loginId={loginId} isAuthenticated={isAuthenticated}/>
         </Route>
         <Route path='/'>
           {isLogin ? <Redirect to='/mainpage' /> : <Redirect to='/login' />}

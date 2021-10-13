@@ -5,12 +5,42 @@ import Posts from './Posts';
 // import Loader from './Loader';
 import axios from 'axios';
 
-function Feeds () {
-<<<<<<< HEAD
-    const [postArray, setPostArray] = useState([]);
-    const [userId, setUserId] = useState()
-=======
+function Feeds ({loginId}) {
+
   const [postArray, setPostArray] = useState([]);
+
+  const getPost = ()=> {
+    axios.get('https://localhost:4000/articles')
+        .then((data)=>{
+          if(data.length===0){
+            setPostArray([])
+          }
+          console.log(data.data)
+          setPostArray(data.data);
+        })
+  }
+  
+  useEffect(()=>{
+    getPost();
+  },[])
+    
+    return (
+      <div>{
+        postArray.length===0 ? "No Feeds":
+        postArray.map((post, index)=>(
+          <Posts key={index} loginId={loginId} friendId={post.serviceUser.id} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}/>
+        ))}
+      </div>
+        
+    )
+    
+  }
+
+  
+  
+  export default Feeds
+
+
   // const [posts, setPosts] = useState([]);
 
   // const [hasMore, sethasMore] = useState(true);
@@ -69,47 +99,3 @@ function Feeds () {
 
     //   </InfiniteScroll>
     // );
-
-   
->>>>>>> a1a3bdd1492e26d423aa9a82ef4c25540f57cfa1
-    const getPost = ()=> {
-      axios.get('https://localhost:4000/articles')
-          .then((data)=>{
-            if(data.length===0){
-              setPostArray([])
-            }
-            setPostArray(data.data);
-          })
-          
-      // let data=[
-      //   {
-      //     "postId":"123",
-      //     "userName":"kimCoding",
-      //     "imageTitle":"갬성터지는 lemonade",
-      //     "postImageURL":"https://cdn.stocksnap.io/img-thumbs/960w/summer-cocktail_ASVCIDCLGA.jpg",
-      //     "explanation":"이 사진은 어떠조 아리너리비허야ㅑㅈㄷㅎ ㅁ니아렂ㅍ아멀",
-      //     "updatedAt":"12345"
-      //   }
-      // ];
-      // setPostArray(data);
-    }
-    useEffect(()=>{
-      getPost();
-    },[])
-
-    return (
-      <div>{
-        postArray.length===0 ? "No Feeds":
-        postArray.map((post, index)=>(
-          <Posts userId={userId} key={index} writerId={post.serviceUser.id} username={post.serviceUser.username} title={post.title} image={post.image} comment={post.comment}
-          />
-        ))}
-      </div>
-        
-    )
-    
-  }
-
-  
-  
-  export default Feeds

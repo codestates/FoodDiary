@@ -132,6 +132,7 @@ public class LoginController {
                         put("email", userResult.getEmail());
                         put("username", userResult.getUsername());
                         put("birth", userResult.getBirth());
+                        put("userId",userResult.getId());
                     }});
 
                 }});

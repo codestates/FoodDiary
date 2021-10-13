@@ -6,19 +6,26 @@ import Edit from './Editing';
 import './Posts.css';
 import axios from 'axios';
 
-function Posts ({writerId, username, title, image, comment, userId }) {
-  
-  const addFriend = ()=>{
-    axios.post('https://localhost:4000/friends',{
-        'userId' : userId,
-        'friendId' : writerId
-      },{ withCredentials: true })
-      .then((res)=>{
-        
-      }
-      )
 
-  }
+function Posts (props) {
+  const {loginId, friendId, username, title, image, comment} = props
+
+  const addFriend = () => {
+    console.log(loginId,friendId)
+    axios.post('https://localhost:4000/friends',
+    {
+      userId:loginId,
+      friendId:friendId
+    },{withCredentials:true})
+    .then((res) => {
+      console.log(res)
+      console.log("w")
+      window.location.reload()
+    });
+  };
+
+  
+  
       return (
         <div className="post_container">
 
@@ -28,8 +35,7 @@ function Posts ({writerId, username, title, image, comment, userId }) {
             <div className="post_username">{username}</div>
 
             <div>
-
-              <img onClick={()=>{ alert('Added to FriendsList'); }}
+              <img onClick={addFriend}
                style={{ "marginLeft": "1rem","marginTop":"18px", "width":"27px", "height":"27px", "cursor":"pointer" }} 
                className="post_like" 
                src={love} 
