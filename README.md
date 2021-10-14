@@ -26,6 +26,8 @@
 ![](https://img.shields.io/badge/BACK-Postman-f56933?style=for-the-badge&logo=Postman)
 ![](https://img.shields.io/badge/BACK-MySql-D68400?style=for-the-badge&logo=MySql)
 
+## :sushi: 우리의 팀
+
 |Name|Role|GitHub|
 |------|---|---|
 |김형준| :sunglasses: Back-End|[<img src="https://img.shields.io/badge/GitHub-ryanromaris-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/ryanromaris)|
