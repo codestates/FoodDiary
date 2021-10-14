@@ -26,6 +26,8 @@
 ![](https://img.shields.io/badge/BACK-Postman-f56933?style=for-the-badge&logo=Postman)
 ![](https://img.shields.io/badge/BACK-MySql-D68400?style=for-the-badge&logo=MySql)
 
+![image](https://user-images.githubusercontent.com/85718995/137320396-f2f7e2c5-fcfa-49c1-9fb6-5b2f62b7c3e3.png)
+
 ## :sushi: 우리의 팀
 
 |Name|Role|GitHub|
@@ -33,8 +35,6 @@
 |김형준| :sunglasses: Back-End|[<img src="https://img.shields.io/badge/GitHub-ryanromaris-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/ryanromaris)|
 |박민준| :sunglasses: Back-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
 |한승우| :nerd_face: Front-End|[<img src="https://img.shields.io/badge/GitHub-sehan95-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/sehan95)|
-
-![image](https://user-images.githubusercontent.com/85718995/137320396-f2f7e2c5-fcfa-49c1-9fb6-5b2f62b7c3e3.png)
 
 ## :hammer: ARCHITECTURE 
 
