@@ -13,8 +13,6 @@
 ![](https://img.shields.io/badge/FRONT-CSS3-2992C9?style=for-the-badge&logo=CSS3)
 
 ![](https://img.shields.io/badge/FRONT-React-61DAFB?style=for-the-badge&logo=React)
-![](https://img.shields.io/badge/FRONT-React(Bootstrap)-61DAFB?style=for-the-badge&logo=React)
-![](https://img.shields.io/badge/FRONT-React(Material_UI)-61DAFB?style=for-the-badge&logo=React)
 
 ![](https://img.shields.io/badge/FRONT-VSCode-582B8D?style=for-the-badge&logo=VisualStudioCode)
 ![](https://img.shields.io/badge/FRONT-Bootstrap-1e97e8?style=for-the-badge&logo=VisualStudioCode)
@@ -27,9 +25,6 @@
 
 ![](https://img.shields.io/badge/BACK-Postman-f56933?style=for-the-badge&logo=Postman)
 ![](https://img.shields.io/badge/BACK-MySql-D68400?style=for-the-badge&logo=MySql)
-
-
-
 
 
 
