@@ -26,10 +26,11 @@
 ![](https://img.shields.io/badge/BACK-Postman-f56933?style=for-the-badge&logo=Postman)
 ![](https://img.shields.io/badge/BACK-MySql-D68400?style=for-the-badge&logo=MySql)
 
-## ARCHITECTURE
+|Name|Role|GitHub|
+|------|---|---|
+|김형준|Back-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
+|박민준|Back-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
+|한승우|Front-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
 
 
-Client Side Storyboard Flowchart
-
-<img src="https://user-images.githubusercontent.com/85821497/137312509-ae46b3cc-d8e5-4253-993b-88a10ab07530.jpg">
 
