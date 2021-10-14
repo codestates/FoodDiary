@@ -36,7 +36,7 @@
 
 ## :hammer: ARCHITECTURE 
 
-Client's Roadmap Flowchart
+# Client's Roadmap Flowchart
 ![image](https://user-images.githubusercontent.com/85821497/137328228-cb6b0245-cb01-4658-8b15-89240c1c34ab.jpg)
 
 
