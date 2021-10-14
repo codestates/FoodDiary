@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&text=FoodDiary&fontAlign=70&fontAlignY=40&animation=t]]winkling)      
 
-# Food Diary
+# :notebook: Food Diary
 
 ### 기술 스택!
 
