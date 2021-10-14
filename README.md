@@ -15,7 +15,7 @@
 ![](https://img.shields.io/badge/FRONT-React-61DAFB?style=for-the-badge&logo=React)
 
 ![](https://img.shields.io/badge/FRONT-VSCode-582B8D?style=for-the-badge&logo=VisualStudioCode)
-![](https://img.shields.io/badge/FRONT-Bootstrap-1e97e8?style=for-the-badge&logo=VisualStudioCode)
+![](https://img.shields.io/badge/FRONT-Bootstrap-1e97e8?style=for-the-badge&logo=Bootstrap)
 
 ## BACK
 
