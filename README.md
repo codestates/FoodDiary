@@ -28,9 +28,9 @@
 
 |Name|Role|GitHub|
 |------|---|---|
-|김형준|Back-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
+|김형준|Back-End|[<img src="https://img.shields.io/badge/GitHub-ryanromaris-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/ryanromaris)|
 |박민준|Back-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
-|한승우|Front-End|[<img src="https://img.shields.io/badge/GitHub-unicusstella-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/unicusstella)|
+|한승우|Front-End|[<img src="https://img.shields.io/badge/GitHub-sehan95-2992C9?style=for-the-badge&logo=CSS3/">](https://github.com/sehan95)|
 
 
 
